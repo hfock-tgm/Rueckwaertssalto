@@ -25,16 +25,7 @@ public class Commands {
 	private String user = null;
 	private String pass = null;
 	private String db = null;
-	private String table = null;
-	private String toSort = null;
-	private String sort = "ASC";
-	private String where = null;
-	private String list = null;
-	private String outputData = null;
-	private String trenn = ";";
-	private String count = null;
-	private String output = null;
-
+	
 	/**
 	 * Der Konstruktor braucht die args von der MainKlasse
 	 * 
