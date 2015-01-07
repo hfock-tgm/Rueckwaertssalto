@@ -58,11 +58,28 @@ public class ConnectDB {
 			e.printStackTrace();
 			return;
 		}
-		
+
 		if (con != null) {
-			System.out.println("Du hast es geschafft! Uebernimm jetzt die Kontrolle ueber deine Datenbank junger Padawan");
+			System.out
+					.println("Du hast es geschafft! Uebernimm jetzt die Kontrolle ueber deine Datenbank junger Padawan");
 		} else {
 			System.out.println("Failed to make connection!");
+		}
+	}
+
+	/**
+	 * Schliesst alle Verbindungen
+	 * 
+	 */
+	public void disconnect() {
+		// Clean-up environment
+		try {
+			System.out.println("Disconnecting from database...");
+			if (!(con == null))
+				con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
