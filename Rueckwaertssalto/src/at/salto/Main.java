@@ -1,5 +1,5 @@
 package at.salto;
 
-public class test {
+public class Main {
 
 }
