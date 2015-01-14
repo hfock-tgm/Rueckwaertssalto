@@ -1,6 +1,7 @@
 package at.salto;
 
 import at.salto.connection.ConnectDB;
+import at.salto.metadaten.MetadatenHoover;
 import at.salto.parsen.Commands;
 
 /**
@@ -17,6 +18,9 @@ public class Main {
 		Commands c = new Commands(args);
 		ConnectDB db = new ConnectDB(c);
 		db.connect();
-		db.disconnect();
+		MetadatenHoover mh = new MetadatenHoover(db);
+		mh.init();
+		mh.hooverColumn();
+//		db.disconnect();
 	}
 }
