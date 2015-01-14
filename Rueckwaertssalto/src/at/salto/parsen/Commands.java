@@ -1,4 +1,4 @@
-package at.salto;
+package at.salto.parsen;
 
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;

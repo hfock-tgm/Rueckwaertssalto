@@ -1,8 +1,10 @@
-package at.salto;
+package at.salto.connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import at.salto.parsen.Commands;
 
 /**
  * Eine Verbindung zur Datenbank wird hergestellt
@@ -18,7 +20,10 @@ public class ConnectDB {
 
 	private Commands c;
 
-	ConnectDB(at.salto.Commands c) {
+	/**
+	 * @param c
+	 */
+	public ConnectDB(at.salto.parsen.Commands c) {
 		this.c = c;
 	}
 

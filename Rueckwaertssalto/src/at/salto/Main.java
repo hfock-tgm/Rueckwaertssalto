@@ -1,5 +1,8 @@
 package at.salto;
 
+import at.salto.connection.ConnectDB;
+import at.salto.parsen.Commands;
+
 /**
  * Main
  * 
