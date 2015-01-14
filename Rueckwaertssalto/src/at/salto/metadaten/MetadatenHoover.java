@@ -6,8 +6,6 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import org.h2.engine.SysProperties;
-
 import at.salto.connection.ConnectDB;
 
 /**

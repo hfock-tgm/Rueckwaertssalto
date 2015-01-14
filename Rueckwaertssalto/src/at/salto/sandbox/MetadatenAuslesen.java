@@ -80,8 +80,4 @@ public class MetadatenAuslesen {
 			System.out.println("Failed to make connection!");
 		}
 	}
-	
-	public static void main(String[] args) {
-		
-	}
 }
