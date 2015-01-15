@@ -7,37 +7,37 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import at.salto.connection.ConnectDB;
+import at.salto.parsen.Commands;
 
 /**
  * @author FOCK
  *
  */
-public class MetadatenHoover {
+public class MetadatenHoover implements hooverbehaviour {
 	private Connection con;
 	private ResultSetMetaData rsMetaData;
 	private ResultSet rs;
 	private Statement st;
-	private int numberOfColumns;
+	private hooverbehaviour hb;
+	private Commands commands;
 
 	/**
-	 * @param c
+	 * @param con 
+	 * @param commands 
 	 */
-	public MetadatenHoover(ConnectDB c) {
-		System.out.println("HALLO");
-		this.con = c.getCon();
+	public MetadatenHoover(ConnectDB con, Commands commands) {
+		this.con = con.getCon();
+		this.commands = commands;
 	}
 
 	/**
 	 * 
 	 */
 	public void init() {
-		System.out.println("Hallo");
 		try {
-//			this.st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-//					ResultSet.CONCUR_UPDATABLE);
 			st = con.createStatement();
 			this.rs = st.executeQuery("SELECT * FROM sender");
-			this.rsMetaData = rs.getMetaData();
+			this.setRsMetaData(rs.getMetaData());
 			
 
 		} catch (SQLException e) {
@@ -45,24 +45,38 @@ public class MetadatenHoover {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * @param hb
+	 */
+	public void chooseBehaviour(hooverbehaviour hb){
+		this.hb = hb;	
+	}
+	/**
+	 * Diese Methode fuehrt alle Strategy Algorithmen aus.
+	 */
+	public void doIt(){
+		chooseBehaviour(new HooverColumn());
+		hooverMetadata(rsMetaData);
+	}
+
+	@Override
+	public void hooverMetadata(ResultSetMetaData rsMetaData) {
+		this.hb.hooverMetadata(rsMetaData);
+		
+	}
 
 	/**
-	 * @throws SQLException
-	 * 
+	 * @return
 	 */
-	public void hooverColumn() {
-		try {
-			this.numberOfColumns = rsMetaData.getColumnCount();
-			System.out.println(this.numberOfColumns);
-			for (int i = 1; i < this.numberOfColumns + 1; i++) {
-				String columnName = rsMetaData.getColumnName(i);
-				String tableName = rsMetaData.getTableName(i);
-				System.out.println(columnName);
-				System.out.println(tableName);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public ResultSetMetaData getRsMetaData() {
+		return rsMetaData;
 	}
+
+	/**
+	 * @param rsMetaData
+	 */
+	public void setRsMetaData(ResultSetMetaData rsMetaData) {
+		this.rsMetaData = rsMetaData;
+	}
+
 }
