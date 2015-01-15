@@ -88,10 +88,16 @@ public class ConnectDB {
 		}
 	}
 
+	/**
+	 * @return
+	 */
 	public Connection getCon() {
 		return con;
 	}
 
+	/**
+	 * @param con
+	 */
 	public void setCon(Connection con) {
 		this.con = con;
 	}

@@ -3,8 +3,8 @@ package at.salto.metadaten;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import at.salto.connection.ConnectDB;
 import at.salto.parsen.Commands;
@@ -29,22 +29,6 @@ public class MetadatenHoover implements hooverbehaviour {
 		this.con = con.getCon();
 		this.commands = commands;
 	}
-
-	/**
-	 * 
-	 */
-	public void init() {
-		try {
-			st = con.createStatement();
-			this.rs = st.executeQuery("SELECT * FROM sender");
-			this.setRsMetaData(rs.getMetaData());
-			
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 	/**
 	 * @param hb
 	 */
@@ -55,14 +39,20 @@ public class MetadatenHoover implements hooverbehaviour {
 	 * Diese Methode fuehrt alle Strategy Algorithmen aus.
 	 */
 	public void doIt(){
+		ArrayList<String> help = new ArrayList<String>();
+		chooseBehaviour(new HooverTables());
+		help = hooverMetadata(this.con, null);
+		System.out.println("-------------------");
 		chooseBehaviour(new HooverColumn());
-		hooverMetadata(rsMetaData);
+		for (int i = 0; i < help.size(); i++) {
+			hooverMetadata(this.con, help.get(i));
+		}
 	}
 
 	@Override
-	public void hooverMetadata(ResultSetMetaData rsMetaData) {
-		this.hb.hooverMetadata(rsMetaData);
-		
+	public ArrayList<String> hooverMetadata(Connection con, String table) {
+		ArrayList<String> result = this.hb.hooverMetadata(con, table);
+		return result;
 	}
 
 	/**

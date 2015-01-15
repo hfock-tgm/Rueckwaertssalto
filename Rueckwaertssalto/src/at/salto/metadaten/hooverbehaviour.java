@@ -1,6 +1,7 @@
 package at.salto.metadaten;
 
-import java.sql.ResultSetMetaData;
+import java.sql.Connection;
+import java.util.ArrayList;
 
 /**
  * @author FOCK
@@ -8,8 +9,10 @@ import java.sql.ResultSetMetaData;
  */
 public interface hooverbehaviour {
 	/**
-	 * @param rsMetaData 
+	 * @param con 
+	 * @param table 
+	 * @return 
 	 * 
 	 */
-	public void hooverMetadata(ResultSetMetaData rsMetaData);
+	public ArrayList<String> hooverMetadata(Connection con, String table);
 }
