@@ -23,7 +23,7 @@ public class HooverTables implements hooverbehaviour {
 			ResultSet rs = md.getTables(null, null, "%", null);
 			while (rs.next()) {
 				++counterLocal;
-				System.out.println(counterLocal + ". Table" + rs.getString(3));
+				System.out.println(counterLocal + ". Table: " + rs.getString(3));
 				result.add(rs.getString(3));
 			}
 		} catch (SQLException e) {

@@ -1,44 +1,48 @@
 package at.salto.metadaten;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import at.salto.connection.ConnectDB;
-import at.salto.parsen.Commands;
 
 /**
+ * Fuehrt verschiedene Algorithmen aus, um Metadaten aus einer Datenbank zu
+ * erhalten.
+ * 
  * @author FOCK
  *
  */
 public class MetadatenHoover implements hooverbehaviour {
 	private Connection con;
 	private ResultSetMetaData rsMetaData;
-	private ResultSet rs;
-	private Statement st;
 	private hooverbehaviour hb;
-	private Commands commands;
 
 	/**
-	 * @param con 
-	 * @param commands 
+	 * Konstruktor
+	 * 
+	 * @param con
+	 *            Die Datenbank aus der die Metadaten herausgesaugt werden
+	 *            sollen
 	 */
-	public MetadatenHoover(ConnectDB con, Commands commands) {
+	public MetadatenHoover(ConnectDB con) {
 		this.con = con.getCon();
-		this.commands = commands;
 	}
+
 	/**
+	 * Waehlt den Algorithmus aus, welcher angwendet werden soll. Strategy
+	 * Pattern
+	 * 
 	 * @param hb
 	 */
-	public void chooseBehaviour(hooverbehaviour hb){
-		this.hb = hb;	
+	public void chooseBehaviour(hooverbehaviour hb) {
+		this.hb = hb;
 	}
+
 	/**
 	 * Diese Methode fuehrt alle Strategy Algorithmen aus.
 	 */
-	public void doIt(){
+	public void doIt() {
 		ArrayList<String> help = new ArrayList<String>();
 		chooseBehaviour(new HooverTables());
 		help = hooverMetadata(this.con, null);
@@ -55,16 +59,12 @@ public class MetadatenHoover implements hooverbehaviour {
 		return result;
 	}
 
-	/**
-	 * @return
-	 */
+	@SuppressWarnings("javadoc")
 	public ResultSetMetaData getRsMetaData() {
 		return rsMetaData;
 	}
 
-	/**
-	 * @param rsMetaData
-	 */
+	@SuppressWarnings("javadoc")
 	public void setRsMetaData(ResultSetMetaData rsMetaData) {
 		this.rsMetaData = rsMetaData;
 	}

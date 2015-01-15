@@ -19,7 +19,7 @@ public class Main {
 		ConnectDB db = new ConnectDB(c);
 		db.check();
 		db.connect();
-		MetadatenHoover mh = new MetadatenHoover(db, c);
+		MetadatenHoover mh = new MetadatenHoover(db);
 		mh.doIt();
 		db.disconnect();
 	}

@@ -107,34 +107,42 @@ public class Commands {
 		}
 	}
 
+	@SuppressWarnings("javadoc")
 	public String getUser() {
 		return user;
 	}
 
+	@SuppressWarnings("javadoc")
 	public void setUser(String user) {
 		this.user = user;
 	}
 
+	@SuppressWarnings("javadoc")
 	public String getPass() {
 		return pass;
 	}
 
+	@SuppressWarnings("javadoc")
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
 
+	@SuppressWarnings("javadoc")
 	public String getDb() {
 		return db;
 	}
 
+	@SuppressWarnings("javadoc")
 	public void setDb(String db) {
 		this.db = db;
 	}
 
+	@SuppressWarnings("javadoc")
 	public String getHost() {
 		return host;
 	}
 
+	@SuppressWarnings("javadoc")
 	public void setHost(String host) {
 		this.host = host;
 	}
