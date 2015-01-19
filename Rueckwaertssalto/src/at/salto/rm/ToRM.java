@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import org.hamcrest.core.SubstringMatcher;
+
 import at.salto.connection.ConnectDB;
 import at.salto.metadaten.HooverColumn;
 import at.salto.metadaten.HooverTables;
@@ -64,7 +66,7 @@ public class ToRM implements hooverbehaviour {
 	/**
 	 * Produziert das RM-File
 	 */
-	public void doRMFile() {
+	public void doRMFileOld() {
 		ArrayList<String> helpTable = new ArrayList<String>();
 		ArrayList<String> helpColumn = new ArrayList<String>();
 		chooseBehaviour(new HooverTables());
@@ -76,6 +78,24 @@ public class ToRM implements hooverbehaviour {
 			for (int j = 0; j < helpColumn.size(); j++) {
 				out.println("	" + j + ". Spaltenname: " + helpColumn.get(j));
 			}
+		}
+	}
+	/**
+	 * Produziert das RM-File
+	 */
+	public void doRMFile() {
+		ArrayList<String> helpTable = new ArrayList<String>();
+		ArrayList<String> helpColumn = new ArrayList<String>();
+		chooseBehaviour(new HooverTables());
+		helpTable = hooverMetadata(db.getCon(), null);
+		for (int i = 0; i < helpTable.size(); i++) {
+			out.print(helpTable.get(i)+"(");
+			chooseBehaviour(new HooverColumn());
+			helpColumn = hooverMetadata(db.getCon(), helpTable.get(i));
+			for (int j = 0; j < helpColumn.size(); j++) {
+				out.print(helpColumn.get(j)+ ", ");
+			}
+			out.println(")");
 		}
 	}
 
