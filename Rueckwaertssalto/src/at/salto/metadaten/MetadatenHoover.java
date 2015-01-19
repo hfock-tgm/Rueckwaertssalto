@@ -24,6 +24,9 @@ public class MetadatenHoover implements hooverbehaviour {
 	 * @param con
 	 *            Die Datenbank aus der die Metadaten herausgesaugt werden
 	 *            sollen
+	 * @param guy
+	 *            Der SupportGuy, welcher mit all den Metadaten gefuettert wird,
+	 *            fuer leichteres Arbeiten
 	 */
 	public MetadatenHoover(ConnectDB con) {
 		this.con = con.getCon();
@@ -38,18 +41,26 @@ public class MetadatenHoover implements hooverbehaviour {
 	public void chooseBehaviour(hooverbehaviour hb) {
 		this.hb = hb;
 	}
-
+	@SuppressWarnings("javadoc")
+	public void test(){
+		chooseBehaviour(new HooverTables());
+		hooverMetadata(this.con, null);
+	}
 	/**
 	 * Diese Methode fuehrt alle Strategy Algorithmen aus.
 	 */
 	public void doIt() {
-		ArrayList<String> help = new ArrayList<String>();
+		ArrayList<String> helpTable = new ArrayList<String>();
+		ArrayList<String> helpColumn = new ArrayList<String>();
 		chooseBehaviour(new HooverTables());
-		help = hooverMetadata(this.con, null);
-		System.out.println("-------------------");
-		chooseBehaviour(new HooverColumn());
-		for (int i = 0; i < help.size(); i++) {
-			hooverMetadata(this.con, help.get(i));
+		helpTable = hooverMetadata(this.con, null);
+		for (int i = 0; i < helpTable.size(); i++) {
+			System.out.println(i + "Tablename: " + helpTable.get(i));
+			chooseBehaviour(new HooverColumn());
+			helpColumn = hooverMetadata(this.con, helpTable.get(i));
+			for (int j = 0; j < helpColumn.size(); j++) {
+				System.out.println("	"+ j +"Spaltenname: " + helpColumn.get(j));
+			}
 		}
 	}
 
@@ -67,6 +78,11 @@ public class MetadatenHoover implements hooverbehaviour {
 	@SuppressWarnings("javadoc")
 	public void setRsMetaData(ResultSetMetaData rsMetaData) {
 		this.rsMetaData = rsMetaData;
+	}
+
+	@SuppressWarnings("javadoc")
+	public Connection getConnection() {
+		return this.con;
 	}
 
 }

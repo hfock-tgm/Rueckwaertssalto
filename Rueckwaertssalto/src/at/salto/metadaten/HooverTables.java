@@ -16,18 +16,18 @@ public class HooverTables implements hooverbehaviour {
 	public ArrayList<String> hooverMetadata(Connection con, String table) {
 		DatabaseMetaData md;
 		ArrayList<String> result = new ArrayList<String>();
-		int counterLocal = 0;
+//		int counterLocal = 0;
 		try {
 			md = con.getMetaData();
 
 			ResultSet rs = md.getTables(null, null, "%", null);
 			while (rs.next()) {
-				++counterLocal;
-				System.out.println(counterLocal + ". Table: " + rs.getString(3));
 				result.add(rs.getString(3));
+//				System.out.println(result.get(counterLocal));
+//				++counterLocal;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.err.println("Ihre Datenbank ist zu groﬂ");
 			e.printStackTrace();
 		}
 		return result;
