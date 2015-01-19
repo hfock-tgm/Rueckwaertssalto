@@ -55,11 +55,11 @@ public class MetadatenHoover implements hooverbehaviour {
 		chooseBehaviour(new HooverTables());
 		helpTable = hooverMetadata(this.con, null);
 		for (int i = 0; i < helpTable.size(); i++) {
-			System.out.println(i + "Tablename: " + helpTable.get(i));
+			System.out.println(i + ". Tablename: " + helpTable.get(i));
 			chooseBehaviour(new HooverColumn());
 			helpColumn = hooverMetadata(this.con, helpTable.get(i));
 			for (int j = 0; j < helpColumn.size(); j++) {
-				System.out.println("	"+ j +"Spaltenname: " + helpColumn.get(j));
+				System.out.println("	"+ j +". Spaltenname: " + helpColumn.get(j));
 			}
 		}
 	}
