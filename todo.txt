@@ -1,0 +1,8 @@
+Objekt, das Metadaten speichert
+	flugzeuge
+		passagiere
+		name
+		id <pk>
+
+
+Klasse, die Attribute zusammenfasst & speichert, dass nicht immer neu abgerufen werden muss.
