@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @author FOCK
  *
  */
-public class HooverTables implements hooverbehaviour {
+public class HooverTables implements hooverable {
 
 	@Override
 	public ArrayList<String> hooverMetadata(Connection con, String table) {
