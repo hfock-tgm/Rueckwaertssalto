@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @author FOCK
  *
  */
-public interface hooverbehaviour {
+public interface hooverable {
 	/**
 	 * Saugt einer Datenbank alle Metadaten aus.
 	 * 

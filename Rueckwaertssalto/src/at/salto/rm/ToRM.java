@@ -6,22 +6,20 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import org.hamcrest.core.SubstringMatcher;
-
 import at.salto.connection.ConnectDB;
 import at.salto.metadaten.HooverColumn;
 import at.salto.metadaten.HooverTables;
 import at.salto.metadaten.MetadatenHoover;
-import at.salto.metadaten.hooverbehaviour;
+import at.salto.metadaten.hooverable;
 
 /**
  * @author FOCK
  *
  */
-public class ToRM implements hooverbehaviour {
+public class ToRM implements hooverable {
 	private MetadatenHoover hoover;
 	private PrintWriter out;
-	private hooverbehaviour hb;
+	private hooverable hb;
 	private ConnectDB db;
 
 	/**
@@ -105,7 +103,7 @@ public class ToRM implements hooverbehaviour {
 	 * 
 	 * @param hb
 	 */
-	public void chooseBehaviour(hooverbehaviour hb) {
+	public void chooseBehaviour(hooverable hb) {
 		this.hb = hb;
 	}
 

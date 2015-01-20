@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author FOCK
  *
  */
-public class HooverColumn implements hooverbehaviour {
+public class HooverColumn implements hooverable {
 
 	@Override
 	public ArrayList<String> hooverMetadata(Connection con, String table) {

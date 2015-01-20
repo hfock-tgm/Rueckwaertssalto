@@ -13,10 +13,10 @@ import at.salto.connection.ConnectDB;
  * @author FOCK
  *
  */
-public class MetadatenHoover implements hooverbehaviour {
+public class MetadatenHoover implements hooverable {
 	private Connection con;
 	private ResultSetMetaData rsMetaData;
-	private hooverbehaviour hb;
+	private hooverable hb;
 
 	/**
 	 * Konstruktor
@@ -38,7 +38,7 @@ public class MetadatenHoover implements hooverbehaviour {
 	 * 
 	 * @param hb
 	 */
-	public void chooseBehaviour(hooverbehaviour hb) {
+	public void chooseBehaviour(hooverable hb) {
 		this.hb = hb;
 	}
 	@SuppressWarnings("javadoc")
