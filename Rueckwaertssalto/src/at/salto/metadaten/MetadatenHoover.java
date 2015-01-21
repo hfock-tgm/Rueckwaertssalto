@@ -14,12 +14,11 @@ import at.salto.connection.ConnectDB;
  *
  */
 public class MetadatenHoover implements hooverable {
-	private ConnectDB connectDB;
 	private Connection con;
 	private ResultSetMetaData rsMetaData;
 	private hooverable hb;
 
-	private ArrayList<MetadatenObject> storageObjects;
+	private ArrayList<MetadatenObject> storagedObjects;
 
 	/**
 	 * Konstruktor
@@ -33,7 +32,6 @@ public class MetadatenHoover implements hooverable {
 	 */
 	public MetadatenHoover(ConnectDB con) {
 		this.con = con.getCon();
-		this.connectDB = con;
 	}
 
 	/**
@@ -58,20 +56,23 @@ public class MetadatenHoover implements hooverable {
 	public void fillObjects() {
 		// In diese ArrayList werden all die befuellten MetadatenObjects
 		// gespeichert
-		this.storageObjects = new ArrayList<MetadatenObject>();
+		this.storagedObjects = new ArrayList<MetadatenObject>();
 		// Hilfs ArrayList um die Tablenames zu speichern
 		ArrayList<String> helpTable = new ArrayList<String>();
 		ArrayList<String> helpColumn = new ArrayList<String>();
 
+		// TableArray wird mit all den Tablenames gefuellt
+		// Saugverhalten wird ausgesucht ==> Tabellennamen
 		chooseBehaviour(new HooverTables());
 		helpTable = hooverMetadata(this.con, null);
+		// Hier werden alle Tablenames durchgeloopt
 		for (int i = 0; i < helpTable.size(); i++) {
+			// Saugverhalten wird ausgesucht ==> Tabellennamen
 			chooseBehaviour(new HooverColumn());
 			helpColumn = hooverMetadata(this.con, helpTable.get(i));
-			MetadatenObject test = new MetadatenObject(helpTable.get(i),
-					this.connectDB);
-			test.takeColumns(helpColumn);
-			this.storageObjects.add(test);
+			MetadatenObject TRexDerGrausame = new MetadatenObject(helpTable.get(i));
+			TRexDerGrausame.takeColumns(helpColumn);
+			this.storagedObjects.add(TRexDerGrausame);
 		}
 	}
 
@@ -79,46 +80,15 @@ public class MetadatenHoover implements hooverable {
 	 * 
 	 */
 	public void testObjects() {
-		if (this.storageObjects == null) {
+		if (this.storagedObjects == null) {
 			System.out
 					.println("Die ArrayList, welche fuer Objekte zustaendig ist, ist leer");
 		} else {
-			for (MetadatenObject o : this.storageObjects) {
+			for (MetadatenObject o : this.storagedObjects) {
 				System.out.println(o.toString());
 			}
 		}
 	}
-
-	/**
-	 * Diese Methode fuehrt alle Strategy Algorithmen aus.
-	 */
-	public void doIt() {
-		ArrayList<String> helpTable = new ArrayList<String>();
-		ArrayList<String> helpColumn = new ArrayList<String>();
-		chooseBehaviour(new HooverTables());
-		helpTable = hooverMetadata(this.con, null);
-		for (int i = 0; i < helpTable.size(); i++) {
-			// System.out.println(i + ". Tablename: " + helpTable.get(i));
-			chooseBehaviour(new HooverColumn());
-			helpColumn = hooverMetadata(this.con, helpTable.get(i));
-			for (int j = 0; j < helpColumn.size(); j++) {
-				// System.out.println("	"+ j +". Spaltenname: " +
-				// helpColumn.get(j));
-			}
-		}
-	}
-
-	/**
-	 * 
-	 */
-	/*
-	 * public void doItProper() { ArrayList<String> helpTable = new
-	 * ArrayList<String>(); chooseBehaviour(new HooverTables()); helpTable =
-	 * hooverMetadata(this.con, null); for (int i = 0; i < helpTable.size();
-	 * i++) { MetadatenObject object = new MetadatenObject(helpTable.get(i),
-	 * this.connectDB); object.hoovMetadaten();
-	 * System.out.println(object.toString()); } }
-	 */
 
 	@Override
 	public ArrayList<String> hooverMetadata(Connection con, String table) {
@@ -141,4 +111,8 @@ public class MetadatenHoover implements hooverable {
 		return this.con;
 	}
 
+	@SuppressWarnings("javadoc")
+	public ArrayList<MetadatenObject> getObjects() {
+		return storagedObjects;
+	}
 }

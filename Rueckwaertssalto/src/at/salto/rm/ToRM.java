@@ -10,6 +10,7 @@ import at.salto.connection.ConnectDB;
 import at.salto.metadaten.HooverColumn;
 import at.salto.metadaten.HooverTables;
 import at.salto.metadaten.MetadatenHoover;
+import at.salto.metadaten.MetadatenObject;
 import at.salto.metadaten.hooverable;
 
 /**
@@ -20,14 +21,15 @@ public class ToRM implements hooverable {
 	private MetadatenHoover hoover;
 	private PrintWriter out;
 	private hooverable hb;
-	private ConnectDB db;
+	private ArrayList<MetadatenObject> storagedObjects;
 
 	/**
 	 * @param db
 	 * @param hoover
 	 */
-	public ToRM(ConnectDB db) {
-		this.db = db;
+	public ToRM(MetadatenHoover hoover) {
+		this.hoover = hoover;
+		this.storagedObjects = hoover.getObjects();
 	}
 
 	/**
@@ -60,40 +62,18 @@ public class ToRM implements hooverable {
 			System.out.println("PrintWriter not open");
 		}
 	}
-
-	/**
-	 * Produziert das RM-File
-	 */
-	public void doRMFileOld() {
-		ArrayList<String> helpTable = new ArrayList<String>();
-		ArrayList<String> helpColumn = new ArrayList<String>();
-		chooseBehaviour(new HooverTables());
-		helpTable = hooverMetadata(db.getCon(), null);
-		for (int i = 0; i < helpTable.size(); i++) {
-			out.println(i + ". Tablename: " + helpTable.get(i));
-			chooseBehaviour(new HooverColumn());
-			helpColumn = hooverMetadata(db.getCon(), helpTable.get(i));
-			for (int j = 0; j < helpColumn.size(); j++) {
-				out.println("	" + j + ". Spaltenname: " + helpColumn.get(j));
-			}
-		}
-	}
 	/**
 	 * Produziert das RM-File
 	 */
 	public void doRMFile() {
-		ArrayList<String> helpTable = new ArrayList<String>();
-		ArrayList<String> helpColumn = new ArrayList<String>();
-		chooseBehaviour(new HooverTables());
-		helpTable = hooverMetadata(db.getCon(), null);
-		for (int i = 0; i < helpTable.size(); i++) {
-			out.print(helpTable.get(i)+"(");
-			chooseBehaviour(new HooverColumn());
-			helpColumn = hooverMetadata(db.getCon(), helpTable.get(i));
-			for (int j = 0; j < helpColumn.size(); j++) {
-				out.print(helpColumn.get(j)+ ", ");
+		if (this.storagedObjects == null) {
+			System.out
+					.println("Die ArrayList, welche fuer Objekte zustaendig ist, ist leer");
+		} else {
+			for (MetadatenObject o : this.storagedObjects) {
+				System.out.println(o.toString());
+				out.println(o.toString());
 			}
-			out.println(")");
 		}
 	}
 

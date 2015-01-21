@@ -18,7 +18,7 @@ public interface hooverable {
 	 *            Die Connection von der Datenbank aus der die Metadaten
 	 *            herausgesaugt werden sollen
 	 * @param table
-	 *            Fuer den Sonderfall des HooverColumn damit er weiss aus,
+	 *            Fuer den Sonderfall des HooverColumn. Damit er weiss aus,
 	 *            welcher Tabelle er die Metadaten heraussaugen soll
 	 * @return Liefert eine ArrayList<String> in der all die herausgesaugten
 	 *         Metadaten, von der Datenbank, sind.

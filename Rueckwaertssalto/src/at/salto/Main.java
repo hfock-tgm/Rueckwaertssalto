@@ -21,15 +21,13 @@ public class Main {
 		ConnectDB db = new ConnectDB(c);
 		db.check();
 		db.connect();
-		MetadatenHoover mh = new MetadatenHoover(db);
-//		mh.doIt();
-//		mh.doItProper();
-		mh.fillObjects();
-		mh.testObjects();
-//		ToRM rm = new ToRM(db);
-//		rm.startPrintWriter();
-//		rm.doRMFile();
-//		rm.stopPrintWriter();
+		MetadatenHoover hoover = new MetadatenHoover(db);
+		hoover.fillObjects();
+		hoover.testObjects();
+		ToRM rm = new ToRM(hoover);
+		rm.startPrintWriter();
+		rm.doRMFile();
+		rm.stopPrintWriter();
 		db.disconnect();
 	}
 }

@@ -1,9 +1,6 @@
 package at.salto.metadaten;
 
-import java.sql.Connection;
 import java.util.ArrayList;
-
-import at.salto.connection.ConnectDB;
 
 /**
  * Dieses Objekt bekommt all die Metadaten aus der Datenbank uns speichert sie
@@ -12,24 +9,22 @@ import at.salto.connection.ConnectDB;
  * @author FOCK
  *
  */
-public class MetadatenObject implements hooverable {
-	private hooverable hb;
+public class MetadatenObject {
 	private String tableName;
 	private ArrayList<String> columns;
-	private Connection con;
 
 	/**
 	 * @param tableName
 	 * @param con
 	 * 
 	 */
-	public MetadatenObject(String tableName, ConnectDB con) {
+	public MetadatenObject(String tableName) {
 		this.tableName = tableName;
-		this.con = con.getCon();
 	}
 
 	/**
 	 * Fuettert das MetadatenObject mit Metadaten
+	 * @param columns 
 	 */
 	public void takeColumns(ArrayList<String> columns) {
 		this.columns = columns;
@@ -47,27 +42,4 @@ public class MetadatenObject implements hooverable {
 		result.append(")");
 		return result.toString();
 	}
-
-	/**
-	 * Waehlt den Algorithmus aus, welcher angwendet werden soll. Strategy
-	 * Pattern
-	 * 
-	 * @param hb
-	 */
-	public void chooseBehaviour(hooverable hb) {
-		this.hb = hb;
-	}
-
-	/**
-	 * Waehlt den Algorithmus aus, welcher angwendet werden soll. Strategy
-	 * Pattern
-	 * 
-	 * @param hb
-	 */
-	@Override
-	public ArrayList<String> hooverMetadata(Connection con, String table) {
-		ArrayList<String> result = this.hb.hooverMetadata(con, table);
-		return result;
-	}
-
 }
