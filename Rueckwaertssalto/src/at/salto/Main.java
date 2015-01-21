@@ -21,13 +21,13 @@ public class Main {
 		db.check();
 		db.connect();
 		MetadatenHoover hoover = new MetadatenHoover(db);
-		hoover.test();
-//		hoover.fillObjects();
-//		hoover.testObjects();
-//		ToRM rm = new ToRM(hoover);
-//		rm.startPrintWriter();
-//		rm.doRMFile();
-//		rm.stopPrintWriter();
+//		hoover.test();
+		hoover.fillObjects();
+		hoover.testObjects();
+		ToRM rm = new ToRM(hoover);
+		rm.startPrintWriter();
+		rm.doRMFile();
+		rm.stopPrintWriter();
 		db.disconnect();
 	}
 }

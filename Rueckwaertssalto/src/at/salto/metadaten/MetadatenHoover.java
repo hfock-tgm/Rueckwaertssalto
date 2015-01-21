@@ -54,6 +54,7 @@ public class MetadatenHoover implements hooverable {
 		// Hilfs ArrayList um die Tablenames zu speichern
 		ArrayList<String> helpTable = new ArrayList<String>();
 		ArrayList<String> helpColumn = new ArrayList<String>();
+		ArrayList<String> helpForeign = new ArrayList<String>();
 
 		// TableArray wird mit all den Tablenames gefuellt
 		// Saugverhalten wird ausgesucht ==> Tabellennamen
@@ -64,9 +65,12 @@ public class MetadatenHoover implements hooverable {
 			// Saugverhalten wird ausgesucht ==> Tabellennamen
 			chooseBehaviour(new HooverColumn());
 			helpColumn = hooverMetadata(this.con, helpTable.get(i));
+			chooseBehaviour(new HooverForeignKeys());
+			helpForeign = hooverMetadata(this.con, helpTable.get(i));
+			
 			MetadatenObject TRexDerGrausame = new MetadatenObject(
 					helpTable.get(i));
-			TRexDerGrausame.takeColumns(helpColumn);
+			TRexDerGrausame.takeAllINeed(helpColumn, helpForeign);
 			this.storagedObjects.add(TRexDerGrausame);
 		}
 	}
@@ -105,7 +109,7 @@ public class MetadatenHoover implements hooverable {
 			chooseBehaviour(new HooverForeignKeys());
 			helpForeign = hooverMetadata(this.con, helpTable.get(i));
 			for (int k = 0; k < helpForeign.size(); k++)
-			System.out.println("	" + k +" ForeignKey: "+ helpForeign.get(k));
+			System.out.println("	" + k +" ForeignKey:  "+ helpForeign.get(k));
 		}
 	}
 

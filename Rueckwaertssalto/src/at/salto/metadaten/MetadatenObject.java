@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class MetadatenObject {
 	private String tableName;
 	private ArrayList<String> columns;
+	private ArrayList<String> foreignKeys;
 
 	/**
 	 * @param tableName
@@ -24,10 +25,14 @@ public class MetadatenObject {
 
 	/**
 	 * Fuettert das MetadatenObject mit Metadaten
-	 * @param columns 
+	 * 
+	 * @param columns
+	 * @param foreignKeys
 	 */
-	public void takeColumns(ArrayList<String> columns) {
+	public void takeAllINeed(ArrayList<String> columns,
+			ArrayList<String> foreignKeys) {
 		this.columns = columns;
+		this.foreignKeys = foreignKeys;
 	}
 
 	@Override
@@ -38,8 +43,12 @@ public class MetadatenObject {
 		for (int i = 0; i < columns.size(); i++) {
 			result.append(columns.get(i) + " ,");
 		}
+		for (int j = 0; j < foreignKeys.size(); j++) {
+			result.append(foreignKeys.get(j) + " ,");
+		}
 		result.delete(result.length() - 2, result.length());
 		result.append(")");
 		return result.toString();
 	}
+
 }
