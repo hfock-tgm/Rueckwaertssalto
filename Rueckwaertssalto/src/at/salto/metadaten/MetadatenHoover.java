@@ -44,12 +44,6 @@ public class MetadatenHoover implements hooverable {
 		this.hb = hb;
 	}
 
-	@SuppressWarnings("javadoc")
-	public void test() {
-		chooseBehaviour(new HooverTables());
-		hooverMetadata(this.con, null);
-	}
-
 	/**
 	 * 
 	 */
@@ -70,7 +64,8 @@ public class MetadatenHoover implements hooverable {
 			// Saugverhalten wird ausgesucht ==> Tabellennamen
 			chooseBehaviour(new HooverColumn());
 			helpColumn = hooverMetadata(this.con, helpTable.get(i));
-			MetadatenObject TRexDerGrausame = new MetadatenObject(helpTable.get(i));
+			MetadatenObject TRexDerGrausame = new MetadatenObject(
+					helpTable.get(i));
 			TRexDerGrausame.takeColumns(helpColumn);
 			this.storagedObjects.add(TRexDerGrausame);
 		}
@@ -87,6 +82,30 @@ public class MetadatenHoover implements hooverable {
 			for (MetadatenObject o : this.storagedObjects) {
 				System.out.println(o.toString());
 			}
+		}
+	}
+
+	/**
+	 * 
+	 */
+	public void test() {
+		ArrayList<String> helpTable = new ArrayList<String>();
+		ArrayList<String> helpColumn = new ArrayList<String>();
+		ArrayList<String> helpForeign = new ArrayList<String>();
+		
+		chooseBehaviour(new HooverTables());
+		helpTable = hooverMetadata(this.con, null);
+		for (int i = 0; i < helpTable.size(); i++) {
+			System.out.println(i + " Tabellename: "+ helpTable.get(i));
+			chooseBehaviour(new HooverColumn());
+			helpColumn = hooverMetadata(this.con, helpTable.get(i));			
+			for(int j = 0; j < helpColumn.size(); j++) {
+				System.out.println("	" + j + " Spaltenname: "+ helpColumn.get(j));
+			}
+			chooseBehaviour(new HooverForeignKeys());
+			helpForeign = hooverMetadata(this.con, helpTable.get(i));
+			for (int k = 0; k < helpForeign.size(); k++)
+			System.out.println("	" + k +" ForeignKey: "+ helpForeign.get(k));
 		}
 	}
 

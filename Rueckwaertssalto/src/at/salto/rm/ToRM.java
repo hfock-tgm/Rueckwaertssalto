@@ -6,9 +6,6 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import at.salto.connection.ConnectDB;
-import at.salto.metadaten.HooverColumn;
-import at.salto.metadaten.HooverTables;
 import at.salto.metadaten.MetadatenHoover;
 import at.salto.metadaten.MetadatenObject;
 import at.salto.metadaten.hooverable;
