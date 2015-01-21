@@ -2,6 +2,7 @@ package at.salto;
 
 import at.salto.connection.ConnectDB;
 import at.salto.metadaten.MetadatenHoover;
+import at.salto.metadaten.MetadatenObject;
 import at.salto.parsen.Commands;
 import at.salto.rm.ToRM;
 
@@ -22,10 +23,13 @@ public class Main {
 		db.connect();
 		MetadatenHoover mh = new MetadatenHoover(db);
 //		mh.doIt();
-		ToRM rm = new ToRM(db);
-		rm.startPrintWriter();
-		rm.doRMFile();
-		rm.stopPrintWriter();
+//		mh.doItProper();
+		mh.fillObjects();
+		mh.testObjects();
+//		ToRM rm = new ToRM(db);
+//		rm.startPrintWriter();
+//		rm.doRMFile();
+//		rm.stopPrintWriter();
 		db.disconnect();
 	}
 }
