@@ -41,10 +41,10 @@ public class MetadatenObject {
 		result.append(this.tableName);
 		result.append("(");
 		for (int i = 0; i < columns.size(); i++) {
-			result.append(columns.get(i) + " ,");
+			result.append(columns.get(i) + ", ");
 		}
 		for (int j = 0; j < foreignKeys.size(); j++) {
-			result.append(foreignKeys.get(j) + " ,");
+			result.append(foreignKeys.get(j) + ", ");
 		}
 		result.delete(result.length() - 2, result.length());
 		result.append(")");

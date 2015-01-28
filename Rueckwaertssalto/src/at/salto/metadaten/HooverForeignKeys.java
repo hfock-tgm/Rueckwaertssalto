@@ -30,7 +30,7 @@ public class HooverForeignKeys implements hooverable {
 			while (rs.next()) {
 				String fkTableName = rs.getString("FKTABLE_NAME");
 				String fkColumnName = rs.getString("FKCOLUMN_NAME");
-				int fkSequence = rs.getInt("KEY_SEQ");
+//				int fkSequence = rs.getInt("KEY_SEQ");
 //				System.out.println("getExportedKeys(): fkTableName="
 //						+ fkTableName);
 //				System.out.println("getExportedKeys(): fkColumnName="
