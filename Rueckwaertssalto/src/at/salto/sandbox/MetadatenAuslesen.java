@@ -6,8 +6,11 @@ import java.sql.*;
  * 
  * 
  * 
- * @author Hagen Fock & Michael Weinberger 4AHITT
- * @version 2015-01-07
+ * @author Hagen Fock 4AHIT
+ * @author Michael Weinberger 4AHIT
+ * @version 2015-01-28
+ * hfock@student.tgm.ac.at
+ * mweinberger@student.tgm.ac.at
  *
  */
 public class MetadatenAuslesen {

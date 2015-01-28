@@ -6,7 +6,11 @@ import java.util.ArrayList;
  * Dieses Objekt bekommt all die Metadaten aus der Datenbank uns speichert sie
  * fuer spaetere Anwendungen
  * 
- * @author FOCK
+ * @author Hagen Fock 4AHIT
+ * @author Michael Weinberger 4AHIT
+ * @version 2015-01-28
+ * hfock@student.tgm.ac.at
+ * mweinberger@student.tgm.ac.at
  *
  */
 public class MetadatenObject {

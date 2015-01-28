@@ -8,7 +8,11 @@ import at.salto.rm.ToRM;
 /**
  * Main
  * 
- * @author FOCK
+ * @author Hagen Fock 4AHIT
+ * @author Michael Weinberger 4AHIT
+ * @version 2015-01-28
+ * hfock@student.tgm.ac.at
+ * mweinberger@student.tgm.ac.at
  *
  */
 public class Main {

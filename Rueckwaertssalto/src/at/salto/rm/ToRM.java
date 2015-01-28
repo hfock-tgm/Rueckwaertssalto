@@ -11,7 +11,11 @@ import at.salto.metadaten.MetadatenObject;
 import at.salto.metadaten.hooverable;
 
 /**
- * @author FOCK
+ * @author Hagen Fock 4AHIT
+ * @author Michael Weinberger 4AHIT
+ * @version 2015-01-28
+ * hfock@student.tgm.ac.at
+ * mweinberger@student.tgm.ac.at
  *
  */
 public class ToRM implements hooverable {
