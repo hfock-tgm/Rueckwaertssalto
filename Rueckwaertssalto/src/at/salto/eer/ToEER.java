@@ -1,9 +1,8 @@
-package at.salto.rm;
+package at.salto.eer;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
 import java.util.ArrayList;
 
 import at.salto.metadaten.MetadatenHoover;
@@ -13,19 +12,20 @@ import at.salto.metadaten.hooverable;
 /**
  * @author Hagen Fock 4AHIT
  * @author Michael Weinberger 4AHIT
- * @version 2015-01-28 hfock@student.tgm.ac.at mweinberger@student.tgm.ac.at
- *
+ * @version 2015-01-28
+ * @email hfock@student.tgm.ac.at
+ * @email mweinberger@student.tgm.ac.at
  */
-public class ToRM {
+public class ToEER {
 	private MetadatenHoover hoover;
 	private PrintWriter out;
+	private hooverable hb;
 	private ArrayList<MetadatenObject> storagedObjects;
 
 	/**
-	 * @param db
-	 * @param hoover
+	 * 
 	 */
-	public ToRM(MetadatenHoover hoover) {
+	public ToEER(MetadatenHoover hoover) {
 		this.hoover = hoover;
 		this.storagedObjects = hoover.getObjects();
 	}
@@ -37,7 +37,7 @@ public class ToRM {
 		try {
 			System.out.println("Starts the PrintWriter");
 
-			out = new PrintWriter(new FileWriter("RM.txt"));
+			out = new PrintWriter(new FileWriter("EER.dot"));
 
 		} catch (IndexOutOfBoundsException e) {
 			System.err.println("Caught IndexOutOfBoundsException: "
@@ -60,20 +60,23 @@ public class ToRM {
 			System.out.println("PrintWriter not open");
 		}
 	}
-
+	
 	/**
-	 * Produziert das RM-File
+	 * 
 	 */
-	public void doRMFile() {
-		if (this.storagedObjects == null) {
-			System.out
-					.println("Die ArrayList, welche fuer Objekte zustaendig ist, ist leer");
-		} else {
-			for (MetadatenObject o : this.storagedObjects) {
-				System.out.println(o.toString());
-				out.println(o.toString());
-			}
-		}
+	public void doDotFile(){
+		out.println("graph { "
+		+ "rankdir=LR; "
+		+ "a -- { b c d }; b -- { c e }; c -- { e f }; d -- { f g }; e -- h; "
+		+ "f -- { h i j g }; g -- k; h -- { o l }; i -- { l m j }; j -- { m n k }; "
+		+ "k -- { n r }; l -- { o m }; m -- { o p n }; n -- { q r }; "
+		+ "o -- { s p }; p -- { s t q }; q -- { t r }; r -- t; s -- z; t -- z; "
+		+ "{ rank=same, b, c, d } "
+		+ "{ rank=same, e, f, g } "
+		+ "{ rank=same, h, i, j, k } "
+		+ "{ rank=same, l, m, n } "
+		+ "{ rank=same, o, p, q, r } "
+		+ "{ rank=same, s, t } "
+		+ " }");
 	}
-
 }
