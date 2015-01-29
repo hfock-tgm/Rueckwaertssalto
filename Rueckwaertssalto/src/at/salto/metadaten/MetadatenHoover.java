@@ -5,6 +5,7 @@ import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
 
 import at.salto.connection.ConnectDB;
+import at.salto.storage.MetadatenObject;
 
 /**
  * Fuehrt verschiedene Algorithmen aus, um Metadaten aus einer Datenbank zu
@@ -13,8 +14,8 @@ import at.salto.connection.ConnectDB;
  * @author Hagen Fock 4AHIT
  * @author Michael Weinberger 4AHIT
  * @version 2015-01-28
- * hfock@student.tgm.ac.at
- * mweinberger@student.tgm.ac.at
+ * @email hfock@student.tgm.ac.at
+ * @email mweinberger@student.tgm.ac.at
  *
  */
 public class MetadatenHoover implements hooverable {

@@ -6,8 +6,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import at.salto.metadaten.MetadatenHoover;
-import at.salto.metadaten.MetadatenObject;
 import at.salto.metadaten.hooverable;
+import at.salto.storage.MetadatenObject;
 
 /**
  * @author Hagen Fock 4AHIT

@@ -7,14 +7,15 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import at.salto.metadaten.MetadatenHoover;
-import at.salto.metadaten.MetadatenObject;
 import at.salto.metadaten.hooverable;
+import at.salto.storage.MetadatenObject;
 
 /**
  * @author Hagen Fock 4AHIT
  * @author Michael Weinberger 4AHIT
- * @version 2015-01-28 hfock@student.tgm.ac.at mweinberger@student.tgm.ac.at
- *
+ * @version 2015-01-28
+ * @email hfock@student.tgm.ac.at
+ * @email mweinberger@student.tgm.ac.at
  */
 public class ToRM {
 	private MetadatenHoover hoover;

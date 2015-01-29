@@ -1,4 +1,4 @@
-package at.salto.metadaten;
+package at.salto.storage;
 
 import java.util.ArrayList;
 
@@ -9,8 +9,8 @@ import java.util.ArrayList;
  * @author Hagen Fock 4AHIT
  * @author Michael Weinberger 4AHIT
  * @version 2015-01-28
- * hfock@student.tgm.ac.at
- * mweinberger@student.tgm.ac.at
+ * @email hfock@student.tgm.ac.at
+ * @email mweinberger@student.tgm.ac.at
  *
  */
 public class MetadatenObject {
@@ -53,6 +53,16 @@ public class MetadatenObject {
 		result.delete(result.length() - 2, result.length());
 		result.append(")");
 		return result.toString();
+	}
+
+	@SuppressWarnings("javadoc")
+	public String getTableName() {
+		return this.tableName;
+	}
+	
+	@SuppressWarnings("javadoc")
+	public ArrayList<String> getColumns(){
+		return this.columns;
 	}
 
 }
