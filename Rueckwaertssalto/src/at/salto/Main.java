@@ -1,10 +1,10 @@
 package at.salto;
 
 import at.salto.connection.ConnectDB;
-import at.salto.eer.ToEER;
 import at.salto.metadaten.MetadatenHoover;
+import at.salto.output.ToEER;
+import at.salto.output.ToRM;
 import at.salto.parsen.Commands;
-import at.salto.rm.ToRM;
 
 /**
  * Main
@@ -35,8 +35,9 @@ public class Main {
 		rm.stopPrintWriter();
 		ToEER eer = new ToEER(hoover);
 		eer.startPrintWriter();
-		eer.doDotFile();
+		eer.doDOTFile();
 		eer.stopPrintWriter();
+		eer.toPNG();
 		db.disconnect();
 	}
 }
