@@ -107,16 +107,16 @@ public class EERDot {
 
 	/**
 	 */
-	public void toPNG() {
+	public void toSVG() {
 		Runtime rt = Runtime.getRuntime();
 		try {
 			Process pr = rt.exec("" + DOT_EXE_LOCATION
-					+ " -Tpng EER.dot -o EER.png");
-			System.out.println(DOT_EXE_LOCATION + " -Tpng EER.dot -o EER.png");
+					+ " -Tsvg EER.dot -o EER.svg");
+			System.out.println(DOT_EXE_LOCATION + " -Tsvg EER.dot -o EER.svg");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("PNG wurde erstellt!");
+		System.out.println("SVG wurde erstellt!");
 	}
 }

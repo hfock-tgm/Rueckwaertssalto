@@ -44,7 +44,7 @@ public class Main {
 		fock.babyStepDot();
 //		fock.doDOTFile();
 		fock.stopPrintWriter();
-		fock.toPNG();
+		fock.toSVG();
 		db.disconnect();
 	}
 }
