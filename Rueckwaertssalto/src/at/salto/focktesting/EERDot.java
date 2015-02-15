@@ -1,4 +1,4 @@
-package at.salto.output;
+package at.salto.focktesting;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import at.salto.storage.MetadatenObject;
  * @email hfock@student.tgm.ac.at
  * @email mweinberger@student.tgm.ac.at
  */
-public class ToEER {
+public class EERDot {
 	private MetadatenHoover hoover;
 	private PrintWriter out;
 	private hooverable hb;
@@ -27,7 +27,7 @@ public class ToEER {
 	/**
 	 * 
 	 */
-	public ToEER(MetadatenHoover hoover) {
+	public EERDot(MetadatenHoover hoover) {
 		this.hoover = hoover;
 		this.storagedObjects = hoover.getObjects();
 	}
@@ -66,6 +66,19 @@ public class ToEER {
 	/**
 	 * 
 	 */
+	public void babyStepDot(){
+		out.println("digraph G {");
+		for (int i = 0; i < storagedObjects.size(); i++) {
+			if (i == 0) {
+				out.println(this.storagedObjects.get(0).getTableName() + " [shape=box];");
+			}				
+			out.println(this.storagedObjects.get(0).getTableName() + "->" + this.storagedObjects.get(i).getTableName());
+		}
+		out.println("}");
+	}
+	/**
+	 * 
+	 */
 	public void doDOTFile(){
 		out.println();
 		/*
@@ -83,9 +96,15 @@ public class ToEER {
 		+ "{ rank=same, s, t } \n"
 		+ " } \n");
 		*/
+		out.println("layers = \"spec:design:code:debug:ship;\" \n"
+		+ "node90 [layer = \"code\"]; \n"
+		+ "node91 [layer = \"design:debug\"]; \n"
+		+ "node92 [layer = \"all:code\"]; \n"
+		+ "node93 [layer = \"spec:code,ship\"]; \n"
+		+ "node90 -> node91 [layer = \"all\"]; \n"
+		+ "");
 	}
 	/**
-	 * ACHTUNG FUNKTIONIERT NUR BEI MIR
 	 */
 	public void toPNG() {
 		Runtime rt = Runtime.getRuntime();

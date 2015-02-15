@@ -1,6 +1,7 @@
 package at.salto;
 
 import at.salto.connection.ConnectDB;
+import at.salto.focktesting.EERDot;
 import at.salto.metadaten.MetadatenHoover;
 import at.salto.output.ToEER;
 import at.salto.output.ToRM;
@@ -28,16 +29,21 @@ public class Main {
 		MetadatenHoover hoover = new MetadatenHoover(db);
 //		hoover.test();
 		hoover.fillObjects();
-		hoover.testObjects();
-		ToRM rm = new ToRM(hoover);
-		rm.startPrintWriter();
-		rm.doRMFile();
-		rm.stopPrintWriter();
-		ToEER eer = new ToEER(hoover);
-		eer.startPrintWriter();
-		eer.doDOTFile();
-		eer.stopPrintWriter();
-		eer.toPNG();
+//		hoover.testObjects();
+//		ToRM rm = new ToRM(hoover);
+//		rm.startPrintWriter();
+//		rm.doRMFile();
+//		rm.stopPrintWriter();
+//		ToEER eer = new ToEER(hoover);
+//		eer.startPrintWriter();
+//		eer.doDOTFile();
+//		eer.stopPrintWriter();
+//		eer.toPNG();
+		EERDot fock = new EERDot(hoover);
+		fock.startPrintWriter();
+		fock.babyStepDot();
+//		fock.doDOTFile();
+		fock.stopPrintWriter();
 		db.disconnect();
 	}
 }
