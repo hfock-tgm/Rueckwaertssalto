@@ -41,7 +41,7 @@ public class HooverForeignKeys implements hooverable {
 //						+ fkColumnName);
 //				System.out.println("getExportedKeys(): fkSequence="
 //						+ fkSequence);
-				result.add(fkTableName + "." + fkColumnName);
+				result.add(fkTableName + "_" + fkColumnName);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
