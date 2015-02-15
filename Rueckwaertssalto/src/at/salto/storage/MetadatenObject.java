@@ -64,5 +64,9 @@ public class MetadatenObject {
 	public ArrayList<String> getColumns(){
 		return this.columns;
 	}
-
+	
+	@SuppressWarnings("javadoc")
+	public ArrayList<String> getForeignKeys(){
+		return this.foreignKeys;
+	}
 }

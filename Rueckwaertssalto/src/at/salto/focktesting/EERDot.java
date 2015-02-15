@@ -73,8 +73,10 @@ public class EERDot {
 				out.println(this.storagedObjects.get(i).getTableName() + "->"
 						+ this.storagedObjects.get(i).getTableName() + "_"
 						+ this.storagedObjects.get(i).getColumns().get(j) + ";");
-//				System.out.println(this.storagedObjects.get(i).getColumns()
-//						.get(j));
+				for(int k = 0; k < this.storagedObjects.get(i).getForeignKeys().size(); k++) {
+					out.println(this.storagedObjects.get(i).getTableName() + "->"
+							+ this.storagedObjects.get(i).getForeignKeys().get(k) + ";");
+				}
 			}
 
 		}
