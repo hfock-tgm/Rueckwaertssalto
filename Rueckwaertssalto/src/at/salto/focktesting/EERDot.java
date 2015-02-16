@@ -23,7 +23,7 @@ public class EERDot {
 	private final static String DOT_EXE_LOCATION = "graphviz-2.38\\release\\bin\\dot.exe";
 
 	/**
-	 * @param hoover
+	 * @param hoover 
 	 * 
 	 */
 	public EERDot(MetadatenHoover hoover) {

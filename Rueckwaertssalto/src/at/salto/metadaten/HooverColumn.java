@@ -19,8 +19,10 @@ public class HooverColumn implements hooverable {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery("SELECT * FROM " + table);
 			ResultSetMetaData rsMetaData = rs.getMetaData();
+//			Hier wird der Column count herausgelesen
 			int numberOfColumns = rsMetaData.getColumnCount();
 
+//			Hier werden die Primary keys ausgelesen
 			DatabaseMetaData meta = con.getMetaData();
 			ResultSet pk = meta.getPrimaryKeys(null, null, table);
 
@@ -32,12 +34,14 @@ public class HooverColumn implements hooverable {
 
 			for (int i = 1; i < numberOfColumns; i++) {
 				String columnName = rsMetaData.getColumnName(i);
+				String isNull = "[NOTNULL]";
 				Iterator<String> it = primary.iterator();
 				while (it.hasNext()) {
 					if (columnName.equals(it.next()) == true) {
-						columnName = columnName + "<PK>";
+						columnName = columnName + "[PK]";
 					}
 				}
+				if (rsMetaData.isNullable(i) == 0) columnName += isNull;
 				result.add(columnName);
 			}
 

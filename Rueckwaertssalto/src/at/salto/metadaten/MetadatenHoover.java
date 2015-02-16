@@ -113,6 +113,19 @@ public class MetadatenHoover implements hooverable {
 						+ helpForeign.get(k));
 		}
 	}
+	
+	/**
+	 * 
+	 */
+	public void UNKNOWN(){
+		ArrayList<String> helpTable = new ArrayList<String>();
+		chooseBehaviour(new HooverTables());
+		helpTable = hooverMetadata(this.con, null);
+		for (int i = 0; i < helpTable.size(); i++) {
+			chooseBehaviour(new HooverUNKNOWN());
+			this.hb.hooverMetadata(con, helpTable.get(i));
+		}
+	}
 
 	@Override
 	public ArrayList<String> hooverMetadata(Connection con, String table) {
