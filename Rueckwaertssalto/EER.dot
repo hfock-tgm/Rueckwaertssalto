@@ -1,82 +1,23 @@
 digraph G {
-airlines->airlines_id_PK_NOTNULL;
-airlines->planefleet_airline;
-airlines->airlines_name_NOTNULL;
-airlines->planefleet_airline;
-airports->airports_airportcode_PK_NOTNULL;
-airports->flights_departure_airport;
-airports->flights_destination_airport;
-airports->airports_name;
-airports->flights_departure_airport;
-airports->flights_destination_airport;
-airports->airports_country_NOTNULL;
-airports->flights_departure_airport;
-airports->flights_destination_airport;
-countries->countries_code_PK_NOTNULL;
-flights->flights_airline_PK_NOTNULL;
-flights->passengers_airline;
-flights->passengers_flightnr;
-flights->flights_flightnr_PK_NOTNULL;
-flights->passengers_airline;
-flights->passengers_flightnr;
-flights->flights_departure_time_NOTNULL;
-flights->passengers_airline;
-flights->passengers_flightnr;
-flights->flights_departure_airport;
-flights->passengers_airline;
-flights->passengers_flightnr;
-flights->flights_destination_time_NOTNULL;
-flights->passengers_airline;
-flights->passengers_flightnr;
-flights->flights_destination_airport;
-flights->passengers_airline;
-flights->passengers_flightnr;
-freightplanes->freightplanes_id_PK_NOTNULL;
-passengerplanes->passengerplanes_id_PK_NOTNULL;
-passengerplanes->passengerplanes_maxseats;
-passengers->passengers_id_PK_NOTNULL;
-passengers->tickets_passenger;
-passengers->passengers_firstname;
-passengers->tickets_passenger;
-passengers->passengers_lastname;
-passengers->tickets_passenger;
-passengers->passengers_airline;
-passengers->tickets_passenger;
-planefleet->planefleet_airline_PK_NOTNULL;
-planefleet->flights_airline;
-planefleet->flights_planetype;
-planefleet->planefleet_plane_PK_NOTNULL;
-planefleet->flights_airline;
-planefleet->flights_planetype;
-planefleet->planefleet_nr_PK_NOTNULL;
-planefleet->flights_airline;
-planefleet->flights_planetype;
-planefleet->planefleet_bought;
-planefleet->flights_airline;
-planefleet->flights_planetype;
-planes->planes_id_PK_NOTNULL;
-planes->freightplanes_id;
-planes->passengerplanes_id;
-planes->planefleet_plane;
-planes->planes_manufacturer_NOTNULL;
-planes->freightplanes_id;
-planes->passengerplanes_id;
-planes->planefleet_plane;
-planes->planes_type_NOTNULL;
-planes->freightplanes_id;
-planes->passengerplanes_id;
-planes->planefleet_plane;
-planes->planes_lengthoverall;
-planes->freightplanes_id;
-planes->passengerplanes_id;
-planes->planefleet_plane;
-planes->planes_span;
-planes->freightplanes_id;
-planes->passengerplanes_id;
-planes->planefleet_plane;
-tickets->tickets_id_PK_NOTNULL;
-tickets->tickets_passenger_NOTNULL;
-tickets->tickets_issued_NOTNULL;
-tickets->tickets_rownr;
-tickets->tickets_seatposition;
+airlines [shape=box];
+airports [shape=box];
+countries [shape=box];
+flights [shape=box];
+freightplanes [shape=box];
+passengerplanes [shape=box];
+passengers [shape=box];
+planefleet [shape=box];
+planes [shape=box];
+tickets [shape=box];
+airlines->planefleet
+airports->flights
+airports->flights
+flights->passengers
+flights->passengers
+passengers->tickets
+planefleet->flights
+planefleet->flights
+planes->freightplanes
+planes->passengerplanes
+planes->planefleet
 }

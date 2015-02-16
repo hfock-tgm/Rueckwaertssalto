@@ -38,7 +38,8 @@ public class Main {
 		// eer.toPNG();
 		EERDot fock = new EERDot(hoover);
 		fock.startPrintWriter();
-		fock.babyStepDot();
+//		fock.babyStepDot();
+		fock.babyStepDot2();
 		// fock.doDOTFile();
 		fock.stopPrintWriter();
 		fock.toSVG();

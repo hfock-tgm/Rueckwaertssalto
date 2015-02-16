@@ -23,7 +23,7 @@ public class EERDot {
 	private final static String DOT_EXE_LOCATION = "graphviz-2.38\\release\\bin\\dot.exe";
 
 	/**
-	 * @param hoover 
+	 * @param hoover
 	 * 
 	 */
 	public EERDot(MetadatenHoover hoover) {
@@ -80,6 +80,32 @@ public class EERDot {
 				}
 			}
 
+		}
+		out.println("}");
+	}
+
+	/**
+	 * Das ist eine Methode um sich ans Ergebnis heran zu tasten
+	 */
+	public void babyStepDot2() {
+		out.println("digraph G {");
+		for (int i = 0; i < storagedObjects.size(); i++) {
+			out.println(storagedObjects.get(i).getTableName().toString()
+					+ " [shape=box];");
+		}
+		for (int i = 0; i < storagedObjects.size(); i++) {
+			System.out.println(storagedObjects.get(i).getTableName());
+			String help = storagedObjects.get(i).getTableName();
+			for (int j = 0; j < storagedObjects.get(i).getForeignKeys().size(); j++) {
+				out.println(help + "->" + storagedObjects.get(i).getForeignKeys().get(j).substring(0,
+						 storagedObjects.get(i).getForeignKeys().get(j).indexOf("_")));
+//				System.out.println(storagedObjects.get(i).getForeignKeys()
+//						.get(j));
+				System.out.println(storagedObjects.get(i).getForeignKeys().get(j).substring(0,
+						 storagedObjects.get(i).getForeignKeys().get(j).indexOf("_")));
+			}
+//			 System.out.println(storagedObjects.get(i).getForeignKeys().get(j).substring(0,
+//			 storagedObjects.get(i).getForeignKeys().get(j).indexOf("_")));
 		}
 		out.println("}");
 	}
