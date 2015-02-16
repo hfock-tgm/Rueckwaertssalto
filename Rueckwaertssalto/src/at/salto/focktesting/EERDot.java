@@ -65,7 +65,7 @@ public class EERDot {
 	 * Das ist eine Methode um sich ans Ergebnis heran zu tasten
 	 */
 	public void babyStepDot() {
-		out.println("digraph EE {");
+		out.println("digraph EER {");
 		for (int i = 0; i < storagedObjects.size(); i++) {
 			for (int j = 0; j < this.storagedObjects.get(i).getColumns().size(); j++) {
 				out.println(this.storagedObjects.get(i).getTableName() + "->"
@@ -88,7 +88,7 @@ public class EERDot {
 	 * Das ist eine Methode um sich ans Ergebnis heran zu tasten
 	 */
 	public void babyStepDot2() {
-		out.println("digraph G {");
+		out.println("digraph EER {");
 		for (int i = 0; i < storagedObjects.size(); i++) {
 			out.println(storagedObjects.get(i).getTableName().toString()
 					+ " [shape=box];");
@@ -99,13 +99,14 @@ public class EERDot {
 			for (int j = 0; j < storagedObjects.get(i).getForeignKeys().size(); j++) {
 				out.println(help + "->" + storagedObjects.get(i).getForeignKeys().get(j).substring(0,
 						 storagedObjects.get(i).getForeignKeys().get(j).indexOf("_")));
-//				System.out.println(storagedObjects.get(i).getForeignKeys()
-//						.get(j));
-				System.out.println(storagedObjects.get(i).getForeignKeys().get(j).substring(0,
-						 storagedObjects.get(i).getForeignKeys().get(j).indexOf("_")));
+				System.out.println(storagedObjects.get(i).getForeignKeys()
+						.get(j));
+//				System.out.println(storagedObjects.get(i).getForeignKeys().get(j).substring(0,
+//						 storagedObjects.get(i).getForeignKeys().get(j).indexOf("_")));
+//				
+//				System.out.println(storagedObjects.get(i).getForeignKeys().get(j).substring(0,
+//						 storagedObjects.get(i).getForeignKeys().get(j).indexOf("_")));
 			}
-//			 System.out.println(storagedObjects.get(i).getForeignKeys().get(j).substring(0,
-//			 storagedObjects.get(i).getForeignKeys().get(j).indexOf("_")));
 		}
 		out.println("}");
 	}
