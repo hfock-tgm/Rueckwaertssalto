@@ -65,7 +65,7 @@ public class EERDot {
 	 * Das ist eine Methode um sich ans Ergebnis heran zu tasten
 	 */
 	public void babyStepDot() {
-		out.println("digraph G {");
+		out.println("digraph EER {");
 		for (int i = 0; i < storagedObjects.size(); i++) {
 			for (int j = 0; j < this.storagedObjects.get(i).getColumns().size(); j++) {
 				out.println(this.storagedObjects.get(i).getTableName() + "->"
