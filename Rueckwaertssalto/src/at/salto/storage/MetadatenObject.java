@@ -6,12 +6,9 @@ import java.util.ArrayList;
  * Dieses Objekt bekommt all die Metadaten aus der Datenbank uns speichert sie
  * fuer spaetere Anwendungen
  * 
- * @author Hagen Fock 4AHIT
- * @author Michael Weinberger 4AHIT
+ * @author Hagen Fock 4AHIT & Michael Weinberger 4AHIT
  * @version 2015-01-28
- * @email hfock@student.tgm.ac.at
- * @email mweinberger@student.tgm.ac.at
- *
+ * @email hfock@student.tgm.ac.at & mweinberger@student.tgm.ac.at
  */
 public class MetadatenObject {
 	private String tableName;
@@ -59,14 +56,14 @@ public class MetadatenObject {
 	public String getTableName() {
 		return this.tableName;
 	}
-	
+
 	@SuppressWarnings("javadoc")
-	public ArrayList<String> getColumns(){
+	public ArrayList<String> getColumns() {
 		return this.columns;
 	}
-	
+
 	@SuppressWarnings("javadoc")
-	public ArrayList<String> getForeignKeys(){
+	public ArrayList<String> getForeignKeys() {
 		return this.foreignKeys;
 	}
 }

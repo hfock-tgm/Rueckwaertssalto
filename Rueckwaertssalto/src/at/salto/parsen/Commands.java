@@ -11,12 +11,9 @@ import org.apache.commons.cli.ParseException;
 /**
  * Diese Klasse lieﬂt mithilfe von der Apache CLI die angegeben Argumente aus
  * 
- * @author Hagen Fock 4AHIT
- * @author Michael Weinberger 4AHIT
+ * @author Hagen Fock 4AHIT & Michael Weinberger 4AHIT
  * @version 2015-01-28
- * @email hfock@student.tgm.ac.at
- * @email mweinberger@student.tgm.ac.at
- *
+ * @email hfock@student.tgm.ac.at & mweinberger@student.tgm.ac.at
  */
 public class Commands {
 	private Options options;
@@ -29,7 +26,7 @@ public class Commands {
 	private String user = null;
 	private String pass = null;
 	private String db = null;
-	
+
 	/**
 	 * Der Konstruktor braucht die args von der MainKlasse
 	 * 
@@ -83,10 +80,9 @@ public class Commands {
 
 	/**
 	 * In dieser Methode sind die if Unterscheidungen, um die angegebenen
-	 * Arguemente auszuwerten.
-	 * Dann wird ein String von NULL auf den eingesetzen Wert geaendert und
-	 * ein anderes Programm ueberprueft mit Hilfe der Getter ob die Werte z.B.
-	 * nicht NULL sind.
+	 * Arguemente auszuwerten. Dann wird ein String von NULL auf den eingesetzen
+	 * Wert geaendert und ein anderes Programm ueberprueft mit Hilfe der Getter
+	 * ob die Werte z.B. nicht NULL sind.
 	 * 
 	 */
 	public void pars() {

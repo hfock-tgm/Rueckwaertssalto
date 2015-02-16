@@ -6,34 +6,32 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import at.salto.metadaten.MetadatenHoover;
-import at.salto.metadaten.hooverable;
 import at.salto.storage.MetadatenObject;
 
 /**
- * @author Hagen Fock 4AHIT
- * @author Michael Weinberger 4AHIT
+ * Diese Klasse macht mithilfe des Metadatenobject ein DOT-File und generiert
+ * daraus eine SVGrafik
+ * 
+ * @author Hagen Fock 4AHIT & Michael Weinberger 4AHIT
  * @version 2015-01-28
- * @email hfock@student.tgm.ac.at
- * @email mweinberger@student.tgm.ac.at
+ * @email hfock@student.tgm.ac.at & mweinberger@student.tgm.ac.at
  */
 public class EERDot {
-	private MetadatenHoover hoover;
 	private PrintWriter out;
-	private hooverable hb;
 	private ArrayList<MetadatenObject> storagedObjects;
 
 	private final static String DOT_EXE_LOCATION = "graphviz-2.38\\release\\bin\\dot.exe";
 
 	/**
+	 * @param hoover
 	 * 
 	 */
 	public EERDot(MetadatenHoover hoover) {
-		this.hoover = hoover;
 		this.storagedObjects = hoover.getObjects();
 	}
 
 	/**
-	 * 
+	 * oeffnet den PrintWriter
 	 */
 	public void startPrintWriter() {
 		try {
@@ -64,7 +62,7 @@ public class EERDot {
 	}
 
 	/**
-	 * 
+	 * Das ist eine Methode um sich ans Ergebnis heran zu tasten
 	 */
 	public void babyStepDot() {
 		out.println("digraph G {");
@@ -73,9 +71,12 @@ public class EERDot {
 				out.println(this.storagedObjects.get(i).getTableName() + "->"
 						+ this.storagedObjects.get(i).getTableName() + "_"
 						+ this.storagedObjects.get(i).getColumns().get(j) + ";");
-				for(int k = 0; k < this.storagedObjects.get(i).getForeignKeys().size(); k++) {
-					out.println(this.storagedObjects.get(i).getTableName() + "->"
-							+ this.storagedObjects.get(i).getForeignKeys().get(k) + ";");
+				for (int k = 0; k < this.storagedObjects.get(i)
+						.getForeignKeys().size(); k++) {
+					out.println(this.storagedObjects.get(i).getTableName()
+							+ "->"
+							+ this.storagedObjects.get(i).getForeignKeys()
+									.get(k) + ";");
 				}
 			}
 
@@ -84,36 +85,14 @@ public class EERDot {
 	}
 
 	/**
-	 * 
-	 */
-	public void doDOTFile() {
-		out.println();
-		/*
-		 * out.println("graph { \n" + "rankdir=LR; \n" +
-		 * "a -- { b c d }; b -- { c e }; c -- { e f }; d -- { f g }; e -- h; \n"
-		 * +
-		 * "f -- { h i j g }; g -- k; h -- { o l }; i -- { l m j }; j -- { m n k }; \n"
-		 * + "k -- { n r }; l -- { o m }; m -- { o p n }; n -- { q r }; \n" +
-		 * "o -- { s p }; p -- { s t q }; q -- { t r }; r -- t; s -- z; t -- z; \n"
-		 * + "{ rank=same, b, c, d } \n" + "{ rank=same, e, f, g } \n" +
-		 * "{ rank=same, h, i, j, k } \n" + "{ rank=same, l, m, n } \n" +
-		 * "{ rank=same, o, p, q, r } \n" + "{ rank=same, s, t } \n" + " } \n");
-		 */
-		out.println("layers = \"spec:design:code:debug:ship;\" \n"
-				+ "node90 [layer = \"code\"]; \n"
-				+ "node91 [layer = \"design:debug\"]; \n"
-				+ "node92 [layer = \"all:code\"]; \n"
-				+ "node93 [layer = \"spec:code,ship\"]; \n"
-				+ "node90 -> node91 [layer = \"all\"]; \n" + "");
-	}
-
-	/**
+	 * Macht aus dem DOT-File eine SVGrafik
 	 */
 	public void toSVG() {
 		Runtime rt = Runtime.getRuntime();
 		try {
-			Process pr = rt.exec("" + DOT_EXE_LOCATION
-					+ " -Tsvg EER.dot -o EER.svg");
+			// Process pr = rt.exec("" + DOT_EXE_LOCATION
+			// + " -Tsvg EER.dot -o EER.svg");
+			rt.exec("" + DOT_EXE_LOCATION + " -Tsvg EER.dot -o EER.svg");
 			System.out.println(DOT_EXE_LOCATION + " -Tsvg EER.dot -o EER.svg");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

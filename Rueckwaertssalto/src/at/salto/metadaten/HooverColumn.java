@@ -6,12 +6,9 @@ import java.util.*;
 /**
  * Dieser Hoover saugt die Column Namen einer Tabelle aus
  * 
- * @author Hagen Fock 4AHIT
- * @author Michael Weinberger 4AHIT
+ * @author Hagen Fock 4AHIT & Michael Weinberger 4AHIT
  * @version 2015-01-28
- * @email hfock@student.tgm.ac.at
- * @email mweinberger@student.tgm.ac.at
- *
+ * @email hfock@student.tgm.ac.at & mweinberger@student.tgm.ac.at
  */
 public class HooverColumn implements hooverable {
 

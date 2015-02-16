@@ -7,12 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * @author Hagen Fock 4AHIT
- * @author Michael Weinberger 4AHIT
+ * Saugt die Tabllennamen aus der Datenbank
+ * 
+ * @author Hagen Fock 4AHIT & Michael Weinberger 4AHIT
  * @version 2015-01-28
- * @email hfock@student.tgm.ac.at
- * @email mweinberger@student.tgm.ac.at
- *
+ * @email hfock@student.tgm.ac.at & mweinberger@student.tgm.ac.at
  */
 public class HooverTables implements hooverable {
 

@@ -3,22 +3,19 @@ package at.salto.output;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
 import java.util.ArrayList;
 
 import at.salto.metadaten.MetadatenHoover;
-import at.salto.metadaten.hooverable;
 import at.salto.storage.MetadatenObject;
 
 /**
- * @author Hagen Fock 4AHIT
- * @author Michael Weinberger 4AHIT
+ * Macht mithilfe des MetadatenObject ein RM
+ * 
+ * @author Hagen Fock 4AHIT & Michael Weinberger 4AHIT
  * @version 2015-01-28
- * @email hfock@student.tgm.ac.at
- * @email mweinberger@student.tgm.ac.at
+ * @email hfock@student.tgm.ac.at & mweinberger@student.tgm.ac.at
  */
 public class ToRM {
-	private MetadatenHoover hoover;
 	private PrintWriter out;
 	private ArrayList<MetadatenObject> storagedObjects;
 
@@ -27,7 +24,6 @@ public class ToRM {
 	 * @param hoover
 	 */
 	public ToRM(MetadatenHoover hoover) {
-		this.hoover = hoover;
 		this.storagedObjects = hoover.getObjects();
 	}
 
@@ -71,7 +67,7 @@ public class ToRM {
 					.println("Die ArrayList, welche fuer Objekte zustaendig ist, ist leer");
 		} else {
 			for (MetadatenObject o : this.storagedObjects) {
-				System.out.println(o.toString());
+				// System.out.println(o.toString());
 				out.println(o.toString());
 			}
 		}

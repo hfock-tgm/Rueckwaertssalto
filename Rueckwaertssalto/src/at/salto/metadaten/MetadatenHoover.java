@@ -11,12 +11,9 @@ import at.salto.storage.MetadatenObject;
  * Fuehrt verschiedene Algorithmen aus, um Metadaten aus einer Datenbank zu
  * erhalten.
  * 
- * @author Hagen Fock 4AHIT
- * @author Michael Weinberger 4AHIT
+ * @author Hagen Fock 4AHIT & Michael Weinberger 4AHIT
  * @version 2015-01-28
- * @email hfock@student.tgm.ac.at
- * @email mweinberger@student.tgm.ac.at
- *
+ * @email hfock@student.tgm.ac.at & mweinberger@student.tgm.ac.at
  */
 public class MetadatenHoover implements hooverable {
 	private Connection con;
@@ -31,9 +28,6 @@ public class MetadatenHoover implements hooverable {
 	 * @param con
 	 *            Die Datenbank aus der die Metadaten herausgesaugt werden
 	 *            sollen
-	 * @param guy
-	 *            Der SupportGuy, welcher mit all den Metadaten gefuettert wird,
-	 *            fuer leichteres Arbeiten
 	 */
 	public MetadatenHoover(ConnectDB con) {
 		this.con = con.getCon();
@@ -72,7 +66,7 @@ public class MetadatenHoover implements hooverable {
 			helpColumn = hooverMetadata(this.con, helpTable.get(i));
 			chooseBehaviour(new HooverForeignKeys());
 			helpForeign = hooverMetadata(this.con, helpTable.get(i));
-			
+
 			MetadatenObject TRexDerGrausame = new MetadatenObject(
 					helpTable.get(i));
 			TRexDerGrausame.takeAllINeed(helpColumn, helpForeign);
@@ -101,20 +95,22 @@ public class MetadatenHoover implements hooverable {
 		ArrayList<String> helpTable = new ArrayList<String>();
 		ArrayList<String> helpColumn = new ArrayList<String>();
 		ArrayList<String> helpForeign = new ArrayList<String>();
-		
+
 		chooseBehaviour(new HooverTables());
 		helpTable = hooverMetadata(this.con, null);
 		for (int i = 0; i < helpTable.size(); i++) {
-			System.out.println(i + " Tabellename: "+ helpTable.get(i));
+			System.out.println(i + " Tabellename: " + helpTable.get(i));
 			chooseBehaviour(new HooverColumn());
-			helpColumn = hooverMetadata(this.con, helpTable.get(i));			
-			for(int j = 0; j < helpColumn.size(); j++) {
-				System.out.println("	" + j + " Spaltenname: "+ helpColumn.get(j));
+			helpColumn = hooverMetadata(this.con, helpTable.get(i));
+			for (int j = 0; j < helpColumn.size(); j++) {
+				System.out.println("	" + j + " Spaltenname: "
+						+ helpColumn.get(j));
 			}
 			chooseBehaviour(new HooverForeignKeys());
 			helpForeign = hooverMetadata(this.con, helpTable.get(i));
 			for (int k = 0; k < helpForeign.size(); k++)
-			System.out.println("	" + k +" ForeignKey:  "+ helpForeign.get(k));
+				System.out.println("	" + k + " ForeignKey:  "
+						+ helpForeign.get(k));
 		}
 	}
 

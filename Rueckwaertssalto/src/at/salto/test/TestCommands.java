@@ -9,29 +9,26 @@ import static org.junit.Assert.*;
 /**
  * Das ist die Testerklasse von Commands
  * 
- * @author Hagen Fock 4AHIT
- * @author Michael Weinberger 4AHIT
+ * @author Hagen Fock 4AHIT & Michael Weinberger 4AHIT
  * @version 2015-01-28
- * @email hfock@student.tgm.ac.at
- * @email mweinberger@student.tgm.ac.at
- *
+ * @email hfock@student.tgm.ac.at & mweinberger@student.tgm.ac.at
  */
 public class TestCommands {
 	private Commands c;
 
 	/**
-	 * 
+	 * Simuliert eine Argument eingabe
 	 */
 	@Before
 	public void initTest() {
 		String[] args = { "-h", "localhost", "-u", "root", "-p", "1234", "-d",
-				"premiere"};
+				"premiere" };
 		this.c = new Commands(args);
 		c.init();
 	}
 
 	/**
-	 * 
+	 * Testet den Parser
 	 */
 	@Test
 	public void testParse() {

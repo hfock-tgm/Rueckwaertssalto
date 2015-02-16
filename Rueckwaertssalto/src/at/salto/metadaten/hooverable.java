@@ -7,12 +7,9 @@ import java.util.ArrayList;
  * Interface fuer das Saugverhalten um auch den letzten Rest aus der Datenbank
  * an Metadaten auszusaugen im Strategy Pattern design
  * 
- * @author Hagen Fock 4AHIT
- * @author Michael Weinberger 4AHIT
+ * @author Hagen Fock 4AHIT & Michael Weinberger 4AHIT
  * @version 2015-01-28
- * @email hfock@student.tgm.ac.at
- * @email mweinberger@student.tgm.ac.at
- *
+ * @email hfock@student.tgm.ac.at & mweinberger@student.tgm.ac.at
  */
 public interface hooverable {
 	/**

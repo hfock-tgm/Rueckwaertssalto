@@ -7,18 +7,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * @author Hagen Fock 4AHIT
- * @author Michael Weinberger 4AHIT
+ * Saugt die ForeigKeys sowie auch den Tabellennamen von den FKs
+ * 
+ * @author Hagen Fock 4AHIT & Michael Weinberger 4AHIT
  * @version 2015-01-28
- * @email hfock@student.tgm.ac.at
- * @email mweinberger@student.tgm.ac.at
- *
+ * @email hfock@student.tgm.ac.at & mweinberger@student.tgm.ac.at
  */
 public class HooverForeignKeys implements hooverable {
 
 	@Override
 	public ArrayList<String> hooverMetadata(Connection con, String table) {
 		ArrayList<String> result = new ArrayList<String>();
+		ArrayList<String> fktable = new ArrayList<String>();
+		ArrayList<String> fkcolumn = new ArrayList<String>();
 		ResultSet rs = null;
 		DatabaseMetaData meta;
 		try {
@@ -34,13 +35,15 @@ public class HooverForeignKeys implements hooverable {
 			while (rs.next()) {
 				String fkTableName = rs.getString("FKTABLE_NAME");
 				String fkColumnName = rs.getString("FKCOLUMN_NAME");
-//				int fkSequence = rs.getInt("KEY_SEQ");
-//				System.out.println("getExportedKeys(): fkTableName="
-//						+ fkTableName);
-//				System.out.println("getExportedKeys(): fkColumnName="
-//						+ fkColumnName);
-//				System.out.println("getExportedKeys(): fkSequence="
-//						+ fkSequence);
+				// int fkSequence = rs.getInt("KEY_SEQ");
+				// System.out.println("getExportedKeys(): fkTableName="
+				// + fkTableName);
+				// System.out.println("getExportedKeys(): fkColumnName="
+				// + fkColumnName);
+				// System.out.println("getExportedKeys(): fkSequence="
+				// + fkSequence);
+				fktable.add(fkTableName);
+				fkcolumn.add(fkColumnName);
 				result.add(fkTableName + "_" + fkColumnName);
 			}
 		} catch (SQLException e) {
