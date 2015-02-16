@@ -34,11 +34,11 @@ public class HooverColumn implements hooverable {
 
 			for (int i = 1; i < numberOfColumns; i++) {
 				String columnName = rsMetaData.getColumnName(i);
-				String isNull = "[NOTNULL]";
+				String isNull = "_NOTNULL";
 				Iterator<String> it = primary.iterator();
 				while (it.hasNext()) {
 					if (columnName.equals(it.next()) == true) {
-						columnName = columnName + "[PK]";
+						columnName = columnName + "_PK";
 					}
 				}
 				if (rsMetaData.isNullable(i) == 0) columnName += isNull;
