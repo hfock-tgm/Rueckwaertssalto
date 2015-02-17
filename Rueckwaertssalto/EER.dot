@@ -1,14 +1,58 @@
 digraph G {
 airlines [shape=box];
+airlines->airlines_id_PK_NOTNULL
+airlines->airlines_name_NOTNULL
+airlines->planefleet_airline
 airports [shape=box];
+airports->airports_airportcode_PK_NOTNULL
+airports->airports_name
+airports->airports_country_NOTNULL
+airports->flights_departure_airport
+airports->flights_destination_airport
 countries [shape=box];
+countries->countries_code_PK_NOTNULL
 flights [shape=box];
+flights->flights_airline_PK_NOTNULL
+flights->flights_flightnr_PK_NOTNULL
+flights->flights_departure_time_NOTNULL
+flights->flights_departure_airport
+flights->flights_destination_time_NOTNULL
+flights->flights_destination_airport
+flights->passengers_airline
+flights->passengers_flightnr
 freightplanes [shape=box];
+freightplanes->freightplanes_id_PK_NOTNULL
 passengerplanes [shape=box];
+passengerplanes->passengerplanes_id_PK_NOTNULL
+passengerplanes->passengerplanes_maxseats
 passengers [shape=box];
+passengers->passengers_id_PK_NOTNULL
+passengers->passengers_firstname
+passengers->passengers_lastname
+passengers->passengers_airline
+passengers->tickets_passenger
 planefleet [shape=box];
+planefleet->planefleet_airline_PK_NOTNULL
+planefleet->planefleet_plane_PK_NOTNULL
+planefleet->planefleet_nr_PK_NOTNULL
+planefleet->planefleet_bought
+planefleet->flights_airline
+planefleet->flights_planetype
 planes [shape=box];
+planes->planes_id_PK_NOTNULL
+planes->planes_manufacturer_NOTNULL
+planes->planes_type_NOTNULL
+planes->planes_lengthoverall
+planes->planes_span
+planes->freightplanes_id
+planes->passengerplanes_id
+planes->planefleet_plane
 tickets [shape=box];
+tickets->tickets_id_PK_NOTNULL
+tickets->tickets_passenger_NOTNULL
+tickets->tickets_issued_NOTNULL
+tickets->tickets_rownr
+tickets->tickets_seatposition
 airlines->planefleet
 airports->flights
 airports->flights

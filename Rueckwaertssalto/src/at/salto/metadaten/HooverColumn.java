@@ -42,6 +42,7 @@ public class HooverColumn implements hooverable {
 					}
 				}
 				if (rsMetaData.isNullable(i) == 0) columnName += isNull;
+				columnName = table + "_" + columnName;
 				result.add(columnName);
 			}
 

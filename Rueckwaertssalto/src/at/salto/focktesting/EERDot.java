@@ -90,22 +90,59 @@ public class EERDot {
 	public void babyStepDot2() {
 		out.println("digraph G {");
 		for (int i = 0; i < storagedObjects.size(); i++) {
+			// Hier werden alle Tabellen aufgelistet mit einer [shape=box]
 			out.println(storagedObjects.get(i).getTableName().toString()
 					+ " [shape=box];");
+			// Hier wird jeder Tabelle die dazugehoerigen Spalten hinzugefuegt
+			for (int j = 0; j < storagedObjects.get(i).getColumns().size(); j++) {
+				out.println(storagedObjects.get(i).getTableName().toString()
+						+ "->" + storagedObjects.get(i).getColumns().get(j));
+			}
+			// Hier wird jeder Tabelle die dazugehoerigen ForeognKeys
+			// hinzugefuegt
+			for (int k = 0; k < storagedObjects.get(i).getForeignKeys().size(); k++) {
+				out.println(storagedObjects.get(i).getTableName().toString()
+						+ "->" + storagedObjects.get(i).getForeignKeys().get(k));
+			}
 		}
+		// Diese Variable wird benoetigt damit nicht eine Tabelle oefters auf
+		// eine andere Tabelle zeigt
+		String help2 = null;
+		// Hier werden die Tabellen miteinander "verbunden"
 		for (int i = 0; i < storagedObjects.size(); i++) {
-			System.out.println(storagedObjects.get(i).getTableName());
 			String help = storagedObjects.get(i).getTableName();
 			for (int j = 0; j < storagedObjects.get(i).getForeignKeys().size(); j++) {
-				out.println(help + "->" + storagedObjects.get(i).getForeignKeys().get(j).substring(0,
-						 storagedObjects.get(i).getForeignKeys().get(j).indexOf("_")));
-//				System.out.println(storagedObjects.get(i).getForeignKeys()
-//						.get(j));
-				System.out.println(storagedObjects.get(i).getForeignKeys().get(j).substring(0,
-						 storagedObjects.get(i).getForeignKeys().get(j).indexOf("_")));
+				// Diese IF-Abfrage ueberprueft ob der Verweis auf eine andere
+				// Tabelle schon erstellt wurde
+				if (help2 != storagedObjects
+						.get(i)
+						.getForeignKeys()
+						.get(j)
+						.substring(
+								0,
+								storagedObjects.get(i).getForeignKeys().get(j)
+										.indexOf("_"))) {
+					out.println(help
+							+ "->"
+							+ storagedObjects
+									.get(i)
+									.getForeignKeys()
+									.get(j)
+									.substring(
+											0,
+											storagedObjects.get(i)
+													.getForeignKeys().get(j)
+													.indexOf("_")));
+					help2 = storagedObjects
+							.get(i)
+							.getForeignKeys()
+							.get(j)
+							.substring(
+									0,
+									storagedObjects.get(i).getForeignKeys()
+											.get(j).indexOf("_"));
+				}
 			}
-//			 System.out.println(storagedObjects.get(i).getForeignKeys().get(j).substring(0,
-//			 storagedObjects.get(i).getForeignKeys().get(j).indexOf("_")));
 		}
 		out.println("}");
 	}
