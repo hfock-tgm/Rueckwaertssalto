@@ -88,7 +88,7 @@ public class EERDot {
 	 * Das ist eine Methode um sich ans Ergebnis heran zu tasten
 	 */
 	public void babyStepDot2() {
-		out.println("digraph EER {");
+		out.println("graph ERD {");
 		for (int i = 0; i < storagedObjects.size(); i++) {
 			// Hier werden alle Tabellen aufgelistet mit einer [shape=box]
 			out.println(storagedObjects.get(i).getTableName().toString()
@@ -96,51 +96,30 @@ public class EERDot {
 			// Hier wird jeder Tabelle die dazugehoerigen Spalten hinzugefuegt
 			for (int j = 0; j < storagedObjects.get(i).getColumns().size(); j++) {
 				out.println(storagedObjects.get(i).getTableName().toString()
-						+ "->" + storagedObjects.get(i).getColumns().get(j));
+						+ " -- " + storagedObjects.get(i).getColumns().get(j));
 			}
 			// Hier wird jeder Tabelle die dazugehoerigen ForeognKeys
 			// hinzugefuegt
 			for (int k = 0; k < storagedObjects.get(i).getForeignKeys().size(); k++) {
 				out.println(storagedObjects.get(i).getTableName().toString()
-						+ "->" + storagedObjects.get(i).getForeignKeys().get(k));
+						+ " -- " + storagedObjects.get(i).getForeignKeys().get(k));
 			}
 		}
-		// Diese Variable wird benoetigt damit nicht eine Tabelle oefters auf
+		// Die Variable help2 wird benoetigt damit nicht eine Tabelle oefters auf
 		// eine andere Tabelle zeigt
-		String help2 = null;
+		String help2 = new String();
 		// Hier werden die Tabellen miteinander "verbunden"
 		for (int i = 0; i < storagedObjects.size(); i++) {
 			String help = storagedObjects.get(i).getTableName();
 			for (int j = 0; j < storagedObjects.get(i).getForeignKeys().size(); j++) {
 				// Diese IF-Abfrage ueberprueft ob der Verweis auf eine andere
 				// Tabelle schon erstellt wurde
-				if (help2 != storagedObjects
-						.get(i)
-						.getForeignKeys()
-						.get(j)
-						.substring(
-								0,
-								storagedObjects.get(i).getForeignKeys().get(j)
-										.indexOf("_"))) {
+//				if (help2 != storagedObjects.get(i).getForeignKeys().get(j).substring(0, storagedObjects.get(i).getForeignKeys().get(j).indexOf("_"))) {
+				if (!help2.equals(storagedObjects.get(i).getForeignKeys().get(j).substring(0, storagedObjects.get(i).getForeignKeys().get(j).indexOf("_")))) {
 					out.println(help
-							+ "->"
-							+ storagedObjects
-									.get(i)
-									.getForeignKeys()
-									.get(j)
-									.substring(
-											0,
-											storagedObjects.get(i)
-													.getForeignKeys().get(j)
-													.indexOf("_")));
-					help2 = storagedObjects
-							.get(i)
-							.getForeignKeys()
-							.get(j)
-							.substring(
-									0,
-									storagedObjects.get(i).getForeignKeys()
-											.get(j).indexOf("_"));
+							+ " -- "
+							+ storagedObjects.get(i).getForeignKeys().get(j).substring(0, storagedObjects.get(i).getForeignKeys().get(j).indexOf("_")));
+					help2 = storagedObjects.get(i).getForeignKeys().get(j).substring(0, storagedObjects.get(i).getForeignKeys().get(j).indexOf("_"));
 				}
 			}
 		}
