@@ -34,7 +34,7 @@ public class HooverColumn implements hooverable {
 
 			for (int i = 1; i < numberOfColumns; i++) {
 				String columnName = rsMetaData.getColumnName(i);
-				String isNull = "_NOTNULL";
+				String isNull = "_NN";
 				Iterator<String> it = primary.iterator();
 				while (it.hasNext()) {
 					if (columnName.equals(it.next()) == true) {

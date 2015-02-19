@@ -1,4 +1,4 @@
-package at.salto.focktesting;
+package at.salto.output;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import at.salto.storage.MetadatenObject;
  * @version 2015-01-28
  * @email hfock@student.tgm.ac.at & mweinberger@student.tgm.ac.at
  */
-public class EERDot {
+public class ToERD {
 	private PrintWriter out;
 	private ArrayList<MetadatenObject> storagedObjects;
 
@@ -26,7 +26,7 @@ public class EERDot {
 	 * @param hoover
 	 * 
 	 */
-	public EERDot(MetadatenHoover hoover) {
+	public ToERD(MetadatenHoover hoover) {
 		this.storagedObjects = hoover.getObjects();
 	}
 
@@ -64,45 +64,25 @@ public class EERDot {
 	/**
 	 * Das ist eine Methode um sich ans Ergebnis heran zu tasten
 	 */
-	public void babyStepDot() {
-		out.println("digraph G {");
-		for (int i = 0; i < storagedObjects.size(); i++) {
-			for (int j = 0; j < this.storagedObjects.get(i).getColumns().size(); j++) {
-				out.println(this.storagedObjects.get(i).getTableName() + "->"
-						+ this.storagedObjects.get(i).getTableName() + "_"
-						+ this.storagedObjects.get(i).getColumns().get(j) + ";");
-				for (int k = 0; k < this.storagedObjects.get(i)
-						.getForeignKeys().size(); k++) {
-					out.println(this.storagedObjects.get(i).getTableName()
-							+ "->"
-							+ this.storagedObjects.get(i).getForeignKeys()
-									.get(k) + ";");
-				}
-			}
-
-		}
-		out.println("}");
-	}
-
-	/**
-	 * Das ist eine Methode um sich ans Ergebnis heran zu tasten
-	 */
-	public void babyStepDot2() {
+	public void doDOTFile() {
 		out.println("graph ERD {");
 		for (int i = 0; i < storagedObjects.size(); i++) {
 			// Hier werden alle Tabellen aufgelistet mit einer [shape=box]
 			out.println(storagedObjects.get(i).getTableName().toString()
 					+ " [shape=box];");
-			// Hier wird jeder Tabelle die dazugehoerigen Spalten hinzugefuegt
+			// Hier wird jeder Tabelle die dazugehoerigen Attribute hinzugefuegt
 			for (int j = 0; j < storagedObjects.get(i).getColumns().size(); j++) {
 				out.println(storagedObjects.get(i).getTableName().toString()
 						+ " -- " + storagedObjects.get(i).getColumns().get(j));
+				System.out.println(storagedObjects.get(i).getColumns().get(j));
 			}
-			// Hier wird jeder Tabelle die dazugehoerigen ForeognKeys
+			// Hier wird jeder Tabelle die dazugehoerigen ForeignKeys
 			// hinzugefuegt
 			for (int k = 0; k < storagedObjects.get(i).getForeignKeys().size(); k++) {
 				out.println(storagedObjects.get(i).getTableName().toString()
 						+ " -- " + storagedObjects.get(i).getForeignKeys().get(k));
+				System.out.println("FK: " + storagedObjects.get(i).getForeignKeys().get(k));
+				System.out.println("Table: " + storagedObjects.get(i).getTableName().toString());
 			}
 		}
 		// Die Variable help2 wird benoetigt damit nicht eine Tabelle oefters auf

@@ -1,9 +1,8 @@
 package at.salto;
 
 import at.salto.connection.ConnectDB;
-import at.salto.focktesting.EERDot;
 import at.salto.metadaten.MetadatenHoover;
-//import at.salto.output.ToEER;
+import at.salto.output.ToERD;
 import at.salto.output.ToRM;
 import at.salto.parsen.Commands;
 
@@ -17,6 +16,12 @@ import at.salto.parsen.Commands;
 public class Main {
 	/**
 	 * @param args
+	 *            Es muessen folgende Argumente angegeben werden 
+	 *            -u User 
+	 *            -p Passwort 
+	 *            -d Datenbank 
+	 *            Zum Beispiel: superuser -p 1234 -d
+	 *            testDB
 	 */
 	public static void main(String[] args) {
 		Commands c = new Commands(args);
@@ -24,6 +29,7 @@ public class Main {
 		db.check();
 		db.connect();
 		MetadatenHoover hoover = new MetadatenHoover(db);
+		// hoover.UNKNOWN();
 		// hoover.test();
 		hoover.fillObjects();
 		// hoover.testObjects();
@@ -31,21 +37,11 @@ public class Main {
 		rm.startPrintWriter();
 		rm.doRMFile();
 		rm.stopPrintWriter();
-		// ToEER eer = new ToEER(hoover);
-		// eer.startPrintWriter();
-		// eer.doDOTFile();
-		// eer.stopPrintWriter();
-		// eer.toPNG();
-		EERDot fock = new EERDot(hoover);
-		fock.startPrintWriter();
-//		fock.babyStepDot();
-		fock.babyStepDot2();
-		// fock.doDOTFile();
-		fock.stopPrintWriter();
-		fock.toSVG();
-		
-//		hoover.UNKNOWN();
-		
+		ToERD eer = new ToERD(hoover);
+		eer.startPrintWriter();
+		eer.doDOTFile();
+		eer.stopPrintWriter();
+		eer.toSVG();
 		db.disconnect();
 	}
 }

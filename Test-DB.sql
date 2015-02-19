@@ -1,3 +1,9 @@
+DROP DATABASE testdb if exists;
+
+CREATE DATABASE testdb;
+
+USE testdb;
+
 CREATE TABLE countries (
   code CHAR(2) PRIMARY KEY,
   name VARCHAR(100)
@@ -6,15 +12,17 @@ CREATE TABLE countries (
 CREATE TABLE airports (
   airportcode CHAR(3) PRIMARY KEY,
   name VARCHAR(100),
-  country CHAR(2) NOT NULL default '' REFERENCES countries(code),
-  city VARCHAR(100)
+  country CHAR(2) NOT NULL default '',
+  city VARCHAR(100),
+  FOREIGN KEY (country) REFERENCES countries(code)
 );
 
 CREATE TABLE airlines (
   id CHAR(2) NOT NULL,
   name VARCHAR(100) NOT NULL default '',
-  country CHAR(2) NOT NULL default '' REFERENCES countries(code),
-  PRIMARY KEY (id)
+  country CHAR(2) NOT NULL default '',
+  PRIMARY KEY (id),
+  FOREIGN KEY (country) REFERENCES countries(code)
 );
 
 CREATE TABLE planes (
