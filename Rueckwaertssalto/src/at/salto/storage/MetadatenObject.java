@@ -35,6 +35,20 @@ public class MetadatenObject {
 		this.columns = columns;
 		this.foreignKeys = foreignKeys;
 	}
+	
+//	/**
+//	 * 
+//	 */
+//	public void prepareTablesForERD(){
+//		this.columns = new ArrayList<String>();
+//		for (int i = 0; i < this.columns.size(); i++) {
+//			String help = "this.columns.get(i)";
+//			if (help.substring(this.columns.get(i).length() - 2, this.columns.get(i).length()) == "PK") {
+//				this.columns.get(i) = "{node [label="+ this.columns.get(i) +" decorate=\"true\"][label=<<u>"+  +"</u>>];}";
+////				System.out.println("{node [label="id" decorate="true"] idProdukt[label=<id: is NOT NULL>][label=<<u>id</u>>];}");
+//			}
+//		}
+//	}
 
 	@Override
 	public String toString() {

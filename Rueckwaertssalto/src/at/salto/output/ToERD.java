@@ -74,19 +74,18 @@ public class ToERD {
 			for (int j = 0; j < storagedObjects.get(i).getColumns().size(); j++) {
 				out.println(storagedObjects.get(i).getTableName().toString()
 						+ " -- " + storagedObjects.get(i).getColumns().get(j));
-				System.out.println(storagedObjects.get(i).getColumns().get(j));
 			}
 			// Hier wird jeder Tabelle die dazugehoerigen ForeignKeys
 			// hinzugefuegt
 			for (int k = 0; k < storagedObjects.get(i).getForeignKeys().size(); k++) {
 				out.println(storagedObjects.get(i).getTableName().toString()
-						+ " -- " + storagedObjects.get(i).getForeignKeys().get(k));
-				System.out.println("FK: " + storagedObjects.get(i).getForeignKeys().get(k));
-				System.out.println("Table: " + storagedObjects.get(i).getTableName().toString());
+						+ " -- "
+						+ storagedObjects.get(i).getForeignKeys().get(k) + i);
 			}
 		}
-		// Die Variable help2 wird benoetigt damit nicht eine Tabelle oefters auf
-		// eine andere Tabelle zeigt
+		// Die Variable help2 wird benoetigt damit nicht eine Tabelle oefters
+		// auf
+		// ein und die selbe Tabelle zeigt
 		String help2 = new String();
 		// Hier werden die Tabellen miteinander "verbunden"
 		for (int i = 0; i < storagedObjects.size(); i++) {
@@ -94,12 +93,109 @@ public class ToERD {
 			for (int j = 0; j < storagedObjects.get(i).getForeignKeys().size(); j++) {
 				// Diese IF-Abfrage ueberprueft ob der Verweis auf eine andere
 				// Tabelle schon erstellt wurde
-//				if (help2 != storagedObjects.get(i).getForeignKeys().get(j).substring(0, storagedObjects.get(i).getForeignKeys().get(j).indexOf("_"))) {
-				if (!help2.equals(storagedObjects.get(i).getForeignKeys().get(j).substring(0, storagedObjects.get(i).getForeignKeys().get(j).indexOf("_")))) {
+				// if (help2 !=
+				// storagedObjects.get(i).getForeignKeys().get(j).substring(0,
+				// storagedObjects.get(i).getForeignKeys().get(j).indexOf("_")))
+				// {
+				if (!help2.equals(storagedObjects
+						.get(i)
+						.getForeignKeys()
+						.get(j)
+						.substring(
+								0,
+								storagedObjects.get(i).getForeignKeys().get(j)
+										.indexOf("_")))) {
 					out.println(help
 							+ " -- "
-							+ storagedObjects.get(i).getForeignKeys().get(j).substring(0, storagedObjects.get(i).getForeignKeys().get(j).indexOf("_")));
-					help2 = storagedObjects.get(i).getForeignKeys().get(j).substring(0, storagedObjects.get(i).getForeignKeys().get(j).indexOf("_"));
+							+ storagedObjects
+									.get(i)
+									.getForeignKeys()
+									.get(j)
+									.substring(
+											0,
+											storagedObjects.get(i)
+													.getForeignKeys().get(j)
+													.indexOf("_")));
+					help2 = storagedObjects
+							.get(i)
+							.getForeignKeys()
+							.get(j)
+							.substring(
+									0,
+									storagedObjects.get(i).getForeignKeys()
+											.get(j).indexOf("_"));
+				}
+			}
+		}
+		out.println("}");
+	}
+
+	/**
+	 * 
+	 */
+	public void startingFromTheBottom() {
+		out.println("graph ERD {");
+		for (int i = 0; i < storagedObjects.size(); i++) {
+			// Hier werden alle Tabellen aufgelistet mit einer [shape=box]
+			out.println(storagedObjects.get(i).getTableName().toString()
+					+ " [shape=box];");
+			// Hier wird jeder Tabelle die dazugehoerigen Attribute hinzugefuegt
+			for (int j = 0; j < storagedObjects.get(i).getColumns().size(); j++) {
+				out.println(storagedObjects.get(i).getTableName().toString()
+						+ " -- " + storagedObjects.get(i).getColumns().get(j));
+			}
+			// Hier wird jeder Tabelle die dazugehoerigen ForeignKeys
+			// hinzugefuegt
+			for (int k = 0; k < storagedObjects.get(i).getForeignKeys().size(); k++) {
+				out.println(storagedObjects.get(i).getTableName().toString()
+						+ " -- "
+						+ storagedObjects.get(i).getForeignKeys().get(k) + i);
+			}
+		}
+		// Die Variable help2 wird benoetigt damit nicht eine Tabelle oefters
+		// auf
+		// ein und die selbe Tabelle zeigt
+		String help2 = new String();
+		// Hier werden die Tabellen miteinander "verbunden"
+		for (int i = 0; i < storagedObjects.size(); i++) {
+			String help = storagedObjects.get(i).getTableName();
+			for (int j = 0; j < storagedObjects.get(i).getForeignKeys().size(); j++) {
+				// Diese IF-Abfrage ueberprueft ob der Verweis auf eine andere
+				// Tabelle schon erstellt wurde
+				// if (help2 !=
+				// storagedObjects.get(i).getForeignKeys().get(j).substring(0,
+				// storagedObjects.get(i).getForeignKeys().get(j).indexOf("_")))
+				// {
+				if (!help2.equals(storagedObjects
+						.get(i)
+						.getForeignKeys()
+						.get(j)
+						.substring(
+								0,
+								storagedObjects.get(i).getForeignKeys().get(j)
+										.indexOf("_")))) {
+					out.println(help + "AND" + storagedObjects.get(i).getForeignKeys().get(j).substring(0,storagedObjects.get(i).getForeignKeys().get(j).indexOf("_")) + " [shape=diamond];");
+					out.println(help
+							+ " -- "
+							+ help + "AND" + storagedObjects.get(i).getForeignKeys().get(j).substring(0,storagedObjects.get(i).getForeignKeys().get(j).indexOf("_"))
+							+ " -- "
+							+ storagedObjects
+									.get(i)
+									.getForeignKeys()
+									.get(j)
+									.substring(
+											0,
+											storagedObjects.get(i)
+													.getForeignKeys().get(j)
+													.indexOf("_")));
+					help2 = storagedObjects
+							.get(i)
+							.getForeignKeys()
+							.get(j)
+							.substring(
+									0,
+									storagedObjects.get(i).getForeignKeys()
+											.get(j).indexOf("_"));
 				}
 			}
 		}

@@ -2,17 +2,17 @@ graph ERD {
 airlines [shape=box];
 airlines -- airlines_id_PK_NN
 airlines -- airlines_name_NN
-airlines -- planefleet_airline
+airlines -- planefleet_airline0
 airports [shape=box];
 airports -- airports_airportcode_PK_NN
 airports -- airports_name
 airports -- airports_country_NN
-airports -- flights_departure_airport
-airports -- flights_destination_airport
+airports -- flights_departure_airport1
+airports -- flights_destination_airport1
 countries [shape=box];
 countries -- countries_code_PK_NN
-countries -- airlines_country
-countries -- airports_country
+countries -- airlines_country2
+countries -- airports_country2
 flights [shape=box];
 flights -- flights_airline_PK_NN
 flights -- flights_flightnr_PK_NN
@@ -20,8 +20,8 @@ flights -- flights_departure_time_NN
 flights -- flights_departure_airport
 flights -- flights_destination_time_NN
 flights -- flights_destination_airport
-flights -- passengers_airline
-flights -- passengers_flightnr
+flights -- passengers_airline3
+flights -- passengers_flightnr3
 freightplanes [shape=box];
 freightplanes -- freightplanes_id_PK_NN
 passengerplanes [shape=box];
@@ -32,37 +32,47 @@ passengers -- passengers_id_PK_NN
 passengers -- passengers_firstname
 passengers -- passengers_lastname
 passengers -- passengers_airline
-passengers -- tickets_passenger
+passengers -- tickets_passenger6
 planefleet [shape=box];
 planefleet -- planefleet_airline_PK_NN
 planefleet -- planefleet_plane_PK_NN
 planefleet -- planefleet_nr_PK_NN
 planefleet -- planefleet_bought
-planefleet -- flights_airline
-planefleet -- flights_planetype
+planefleet -- flights_airline7
+planefleet -- flights_planetype7
 planes [shape=box];
 planes -- planes_id_PK_NN
 planes -- planes_manufacturer_NN
 planes -- planes_type_NN
 planes -- planes_lengthoverall
 planes -- planes_span
-planes -- freightplanes_id
-planes -- passengerplanes_id
-planes -- planefleet_plane
+planes -- freightplanes_id8
+planes -- passengerplanes_id8
+planes -- planefleet_plane8
 tickets [shape=box];
 tickets -- tickets_id_PK_NN
 tickets -- tickets_passenger_NN
 tickets -- tickets_issued_NN
 tickets -- tickets_rownr
 tickets -- tickets_seatposition
-airlines -- planefleet
-airports -- flights
-countries -- airlines
-countries -- airports
-flights -- passengers
-passengers -- tickets
-planefleet -- flights
-planes -- freightplanes
-planes -- passengerplanes
-planes -- planefleet
+airlinesANDplanefleet [shape=diamond];
+airlines -- airlinesANDplanefleet -- planefleet
+airportsANDflights [shape=diamond];
+airports -- airportsANDflights -- flights
+countriesANDairlines [shape=diamond];
+countries -- countriesANDairlines -- airlines
+countriesANDairports [shape=diamond];
+countries -- countriesANDairports -- airports
+flightsANDpassengers [shape=diamond];
+flights -- flightsANDpassengers -- passengers
+passengersANDtickets [shape=diamond];
+passengers -- passengersANDtickets -- tickets
+planefleetANDflights [shape=diamond];
+planefleet -- planefleetANDflights -- flights
+planesANDfreightplanes [shape=diamond];
+planes -- planesANDfreightplanes -- freightplanes
+planesANDpassengerplanes [shape=diamond];
+planes -- planesANDpassengerplanes -- passengerplanes
+planesANDplanefleet [shape=diamond];
+planes -- planesANDplanefleet -- planefleet
 }
