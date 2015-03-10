@@ -37,12 +37,12 @@ public class Main {
 		rm.startPrintWriter();
 		rm.doRMFile();
 		rm.stopPrintWriter();
-		ToERD eer = new ToERD(hoover);
-		eer.startPrintWriter();
-//		eer.doDOTFile();
-		eer.startingFromTheBottom();
-		eer.stopPrintWriter();
-		eer.toSVG();
+		ToERD erd = new ToERD(hoover);
+        erd.startPrintWriter();
+//		erd.doDOTFile();
+        erd.startingFromTheBottom();
+        erd.stopPrintWriter();
+        erd.toSVG();
 		db.disconnect();
 	}
 }

@@ -20,7 +20,7 @@ public class ToERD {
 	private PrintWriter out;
 	private ArrayList<MetadatenObject> storagedObjects;
 
-	private final static String DOT_EXE_LOCATION = "graphviz-2.38\\release\\bin\\dot.exe";
+	private final static String DOT_EXE_LOCATION = "Rueckwaertssalto\\graphviz-2.38\\release\\bin\\dot.exe";
 
 	/**
 	 * @param hoover
@@ -210,12 +210,12 @@ public class ToERD {
 		try {
 			// Process pr = rt.exec("" + DOT_EXE_LOCATION
 			// + " -Tsvg EER.dot -o EER.svg");
-			rt.exec("" + DOT_EXE_LOCATION + " -Tsvg EER.dot -o EER.svg");
+			rt.exec(DOT_EXE_LOCATION + " -Tsvg EER.dot -o EER.svg");
 			System.out.println(DOT_EXE_LOCATION + " -Tsvg EER.dot -o EER.svg");
+            System.out.println("SVG wurde erstellt!");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.err.println("Es lief etwas schief!");
 			e.printStackTrace();
 		}
-		System.out.println("SVG wurde erstellt!");
 	}
 }
