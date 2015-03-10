@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>at.ac.tgm.fockweinberger</groupId>
   <artifactId>salto</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <build>
     <resources>
       <resource>
@@ -194,7 +194,7 @@
     <main>at.ac.tgm.fockweinberger.Main</main>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <jar.filename>JARFilename</jar.filename>
+    <jar.filename>Ruckwaertssalto</jar.filename>
   </properties>
 </project>
 

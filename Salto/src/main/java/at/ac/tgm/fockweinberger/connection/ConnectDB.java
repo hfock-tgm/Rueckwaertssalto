@@ -36,6 +36,8 @@ public class ConnectDB {
 		if (c.getDb() == null || c.getUser() == null || c.getPass() == null) {
 			System.out
 					.println("Sie haben nicht alle Argumente angegeben, welche benoetigt werden!");
+            System.out
+                    .println("Beispiel: -u superuser -p 1234 -d testdb -h localhost");
 			System.exit(0);
 		}
 	}

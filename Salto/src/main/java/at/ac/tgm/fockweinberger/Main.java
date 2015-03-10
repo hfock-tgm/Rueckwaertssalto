@@ -28,20 +28,16 @@ public class Main {
 		db.check();
 		db.connect();
 		MetadatenHoover hoover = new MetadatenHoover(db);
-		// hoover.UNKNOWN();
-		// hoover.test();
 		hoover.fillObjects();
-		// hoover.testObjects();
 		ToRM rm = new ToRM(hoover);
 		rm.startPrintWriter();
 		rm.doRMFile();
 		rm.stopPrintWriter();
 		ToERD erd = new ToERD(hoover);
         erd.startPrintWriter();
-//		erd.doDOTFile();
-        erd.startingFromTheBottom();
+        erd.doDOTFile();
         erd.stopPrintWriter();
-        erd.toSVG();
+//      erd.toSVG();
 		db.disconnect();
 	}
 }
