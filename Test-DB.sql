@@ -93,4 +93,3 @@ CREATE TABLE tickets (
   PRIMARY KEY (id),
   FOREIGN KEY (passenger) REFERENCES passengers(id)
 );
-
