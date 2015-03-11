@@ -37,7 +37,7 @@ public class Main {
         erd.startPrintWriter();
         erd.doDOTFile();
         erd.stopPrintWriter();
-//      erd.toSVG();
+        erd.toSVG();
 		db.disconnect();
 	}
 }

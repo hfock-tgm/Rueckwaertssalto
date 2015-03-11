@@ -36,7 +36,7 @@ public class ToERD {
 		try {
 			System.out.println("Starts the PrintWriter");
 
-			out = new PrintWriter(new FileWriter("EER.dot"));
+			out = new PrintWriter(new FileWriter("ERD.dot"));
 
 		} catch (IndexOutOfBoundsException e) {
 			System.err.println("Caught IndexOutOfBoundsException: "
@@ -209,7 +209,7 @@ public class ToERD {
 		try {
 			// Process pr = rt.exec("" + DOT_EXE_LOCATION
 			// + " -Tsvg EER.dot -o EER.svg");
-			rt.exec(DOT_EXE_LOCATION + " -Tsvg EER.dot -o EER.svg");
+			rt.exec("dot -Tsvg ERD.dot -o ERD.svg");
 			System.out.println(DOT_EXE_LOCATION + " -Tsvg EER.dot -o EER.svg");
             System.out.println("SVG wurde erstellt!");
 		} catch (IOException e) {
