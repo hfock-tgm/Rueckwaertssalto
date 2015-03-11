@@ -1,9 +1,14 @@
 .classpath
 Salto/final
 Salto/target
+Salto/target/files/Design.png
+Salto/target/files/Fock_Weinberger_Rueckwaertssalto.docx
+Salto/target/files/RichtigesERD.PNG
+Salto/target/files/StrategyPattern.PNG
 *.class
 Salto/graphviz-2.38
 .idea/
 bin/
 Protokoll.pdf
 Rueckwaertssalto.asta.bak
+Rueckwaertssalto.asta
