@@ -35,7 +35,7 @@ public class Main {
 		rm.stopPrintWriter();
 		ToERD erd = new ToERD(hoover);
         erd.startPrintWriter();
-        erd.doDOTFile();
+        erd.doDOTFileExtended();
         erd.stopPrintWriter();
         erd.toSVG();
 		db.disconnect();

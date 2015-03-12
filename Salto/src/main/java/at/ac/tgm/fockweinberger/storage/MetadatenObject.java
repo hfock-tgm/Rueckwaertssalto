@@ -40,7 +40,7 @@ public class MetadatenObject {
 		result.append(this.tableName);
 		result.append("(");
 		for (int i = 0; i < columns.size(); i++) {
-			result.append(columns.get(i) + ", ");
+			result.append(columns.get(i).substring(tableName.length()+1) + ", ");
 		}
 		for (int j = 0; j < foreignKeys.size(); j++) {
 			result.append(foreignKeys.get(j) + ", ");

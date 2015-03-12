@@ -3,6 +3,7 @@ package at.ac.tgm.fockweinberger.output;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.Clock;
 import java.util.ArrayList;
 
 import at.ac.tgm.fockweinberger.storage.MetadatenObject;
@@ -61,7 +62,7 @@ public class ToERD {
 	}
 
 	/**
-	 * Das ist eine Methode um sich ans Ergebnis heran zu tasten
+	 * Diese Methode erstellt mithilfe der MetadatenObject Objekten das Dotfile
 	 */
 	public void doDOTFile() {
 		out.println("graph ERD {");
@@ -130,25 +131,35 @@ public class ToERD {
 	}
 
 	/**
-	 * 
+	 * Diese Methode erstellt mithilfe der MetadatenObject Objekten das Dotfile
 	 */
-	public void startingFromTheBottom() {
+	public void doDOTFileExtended() {
 		out.println("graph ERD {");
 		for (int i = 0; i < storagedObjects.size(); i++) {
 			// Hier werden alle Tabellen aufgelistet mit einer [shape=box]
 			out.println(storagedObjects.get(i).getTableName().toString()
-					+ " [shape=box];");
+					+ " [shape=box, style=filled, color=turquoise];");
 			// Hier wird jeder Tabelle die dazugehoerigen Attribute hinzugefuegt
 			for (int j = 0; j < storagedObjects.get(i).getColumns().size(); j++) {
-				out.println(storagedObjects.get(i).getTableName().toString()
-						+ " -- " + storagedObjects.get(i).getColumns().get(j));
-			}
+                if (storagedObjects.get(i).getColumns().get(j).contains("PK")) {
+                    out.println(storagedObjects.get(i).getTableName().toString()
+                            + " -- " + storagedObjects.get(i).getColumns().get(j)
+                            + " [color=yellow]");
+                    out.println(storagedObjects.get(i).getColumns().get(j) + "[style=filled, color=yellow]");
+                } else {
+                    out.println(storagedObjects.get(i).getTableName().toString()
+                            + " -- " + storagedObjects.get(i).getColumns().get(j) + "[color=green]");
+                    out.println(storagedObjects.get(i).getColumns().get(j) + "[style=filled, color=green]");
+                }
+            }
 			// Hier wird jeder Tabelle die dazugehoerigen ForeignKeys
 			// hinzugefuegt
 			for (int k = 0; k < storagedObjects.get(i).getForeignKeys().size(); k++) {
 				out.println(storagedObjects.get(i).getTableName().toString()
 						+ " -- "
-						+ storagedObjects.get(i).getForeignKeys().get(k) + i);
+						+ storagedObjects.get(i).getForeignKeys().get(k) + i
+                        + "[color=blue];"
+                        + storagedObjects.get(i).getForeignKeys().get(k) + i + "[style=filled, color=blue]");
 			}
 		}
 		// Die Variable help2 wird benoetigt damit nicht eine Tabelle oefters
@@ -173,7 +184,7 @@ public class ToERD {
 								0,
 								storagedObjects.get(i).getForeignKeys().get(j)
 										.indexOf("_")))) {
-					out.println(help + "AND" + storagedObjects.get(i).getForeignKeys().get(j).substring(0,storagedObjects.get(i).getForeignKeys().get(j).indexOf("_")) + " [shape=diamond];");
+					out.println(help + "AND" + storagedObjects.get(i).getForeignKeys().get(j).substring(0,storagedObjects.get(i).getForeignKeys().get(j).indexOf("_")) + " [shape=diamond, style=filled, color=red];");
 					out.println(help
 							+ " -- "
 							+ help + "AND" + storagedObjects.get(i).getForeignKeys().get(j).substring(0,storagedObjects.get(i).getForeignKeys().get(j).indexOf("_"))
@@ -186,7 +197,8 @@ public class ToERD {
 											0,
 											storagedObjects.get(i)
 													.getForeignKeys().get(j)
-													.indexOf("_")));
+													.indexOf("_"))
+                            + "[color=red]");
 					help2 = storagedObjects
 							.get(i)
 							.getForeignKeys()
@@ -198,6 +210,37 @@ public class ToERD {
 				}
 			}
 		}
+        out.println("" +
+//                "{ rank = max;\n" +
+                "    Legend [shape=none, margin=0, label=<\n" +
+                "    <TABLE BORDER=\"0\" CELLBORDER=\"1\" CELLSPACING=\"0\" CELLPADDING=\"4\">\n" +
+                "     <TR>\n" +
+                "      <TD COLSPAN=\"2\"><B>Legend</B></TD>\n" +
+                "     </TR>\n" +
+                "     <TR>\n" +
+                "      <TD>Tablename</TD>\n" +
+                "      <TD BGCOLOR=\"turquoise\"></TD>\n" +
+                "     </TR>\n" +
+                "     <TR>\n" +
+                "      <TD>Attribut</TD>\n" +
+                "      <TD BGCOLOR=\"GREEN\"></TD>\n" +
+                "     </TR>\n" +
+                "     <TR>\n" +
+                "      <TD>PrimaryKey</TD>\n" +
+                "      <TD BGCOLOR=\"YELLOW\"></TD>\n" +
+                "     </TR>\n" +
+                "     <TR>\n" +
+                "      <TD>ForeignKey</TD>\n" +
+                "      <TD BGCOLOR=\"BLUE\"></TD>\n" +
+                "     </TR>\n" +
+                "     <TR>\n" +
+                "      <TD>Knotenpunkte</TD>\n" +
+                "      <TD BGCOLOR=\"RED\"></TD>\n" +
+                "     </TR>\n" +
+                "    </TABLE>\n" +
+                "   >];\n" +
+//                "}"
+                "");
 		out.println("}");
 	}
 
@@ -210,7 +253,7 @@ public class ToERD {
 			// Process pr = rt.exec("" + DOT_EXE_LOCATION
 			// + " -Tsvg EER.dot -o EER.svg");
 			rt.exec("dot -Tsvg ERD.dot -o ERD.svg");
-			System.out.println(DOT_EXE_LOCATION + " -Tsvg EER.dot -o EER.svg");
+			System.out.println("dot -Tsvg ERD.dot -o ERD.svg");
             System.out.println("SVG wurde erstellt!");
 		} catch (IOException e) {
 			System.err.println("Es lief etwas schief!");

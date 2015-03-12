@@ -67,7 +67,6 @@ public class ToRM {
 			out.println("Hinweise zum RM");
 			out.println("Primary Keys werden mit _PK gekennzeichnet");
 			out.println("NotNull wird mit _NN gekennzeichnet");
-			out.println("Der Tabellename wird zu jedem dazugehoerigen Attribut hinzugeschrieben");
 			out.println("");
 			for (MetadatenObject o : this.storagedObjects) {
 				// System.out.println(o.toString());
