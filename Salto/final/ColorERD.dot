@@ -1,0 +1,139 @@
+graph ERD {
+airlines [shape=box, style=filled, color=turquoise];
+airlines -- airlines_id_PK_NN [color=yellow]
+airlines_id_PK_NN[style=filled, color=yellow]
+airlines -- airlines_name_NN[color=green]
+airlines_name_NN[style=filled, color=green]
+airlines -- planefleet_airline0[color=blue];planefleet_airline0[style=filled, color=blue]
+airports [shape=box, style=filled, color=turquoise];
+airports -- airports_airportcode_PK_NN [color=yellow]
+airports_airportcode_PK_NN[style=filled, color=yellow]
+airports -- airports_name[color=green]
+airports_name[style=filled, color=green]
+airports -- airports_country_NN[color=green]
+airports_country_NN[style=filled, color=green]
+airports -- flights_departure_airport1[color=blue];flights_departure_airport1[style=filled, color=blue]
+airports -- flights_destination_airport1[color=blue];flights_destination_airport1[style=filled, color=blue]
+countries [shape=box, style=filled, color=turquoise];
+countries -- countries_code_PK_NN [color=yellow]
+countries_code_PK_NN[style=filled, color=yellow]
+countries -- airlines_country2[color=blue];airlines_country2[style=filled, color=blue]
+countries -- airports_country2[color=blue];airports_country2[style=filled, color=blue]
+flights [shape=box, style=filled, color=turquoise];
+flights -- flights_airline_PK_NN [color=yellow]
+flights_airline_PK_NN[style=filled, color=yellow]
+flights -- flights_flightnr_PK_NN [color=yellow]
+flights_flightnr_PK_NN[style=filled, color=yellow]
+flights -- flights_departure_time_NN[color=green]
+flights_departure_time_NN[style=filled, color=green]
+flights -- flights_departure_airport[color=green]
+flights_departure_airport[style=filled, color=green]
+flights -- flights_destination_time_NN[color=green]
+flights_destination_time_NN[style=filled, color=green]
+flights -- flights_destination_airport[color=green]
+flights_destination_airport[style=filled, color=green]
+flights -- passengers_airline3[color=blue];passengers_airline3[style=filled, color=blue]
+flights -- passengers_flightnr3[color=blue];passengers_flightnr3[style=filled, color=blue]
+freightplanes [shape=box, style=filled, color=turquoise];
+freightplanes -- freightplanes_id_PK_NN [color=yellow]
+freightplanes_id_PK_NN[style=filled, color=yellow]
+passengerplanes [shape=box, style=filled, color=turquoise];
+passengerplanes -- passengerplanes_id_PK_NN [color=yellow]
+passengerplanes_id_PK_NN[style=filled, color=yellow]
+passengerplanes -- passengerplanes_maxseats[color=green]
+passengerplanes_maxseats[style=filled, color=green]
+passengers [shape=box, style=filled, color=turquoise];
+passengers -- passengers_id_PK_NN [color=yellow]
+passengers_id_PK_NN[style=filled, color=yellow]
+passengers -- passengers_firstname[color=green]
+passengers_firstname[style=filled, color=green]
+passengers -- passengers_lastname[color=green]
+passengers_lastname[style=filled, color=green]
+passengers -- passengers_airline[color=green]
+passengers_airline[style=filled, color=green]
+passengers -- tickets_passenger6[color=blue];tickets_passenger6[style=filled, color=blue]
+planefleet [shape=box, style=filled, color=turquoise];
+planefleet -- planefleet_airline_PK_NN [color=yellow]
+planefleet_airline_PK_NN[style=filled, color=yellow]
+planefleet -- planefleet_plane_PK_NN [color=yellow]
+planefleet_plane_PK_NN[style=filled, color=yellow]
+planefleet -- planefleet_nr_PK_NN [color=yellow]
+planefleet_nr_PK_NN[style=filled, color=yellow]
+planefleet -- planefleet_bought[color=green]
+planefleet_bought[style=filled, color=green]
+planefleet -- flights_airline7[color=blue];flights_airline7[style=filled, color=blue]
+planefleet -- flights_planetype7[color=blue];flights_planetype7[style=filled, color=blue]
+planes [shape=box, style=filled, color=turquoise];
+planes -- planes_id_PK_NN [color=yellow]
+planes_id_PK_NN[style=filled, color=yellow]
+planes -- planes_manufacturer_NN[color=green]
+planes_manufacturer_NN[style=filled, color=green]
+planes -- planes_type_NN[color=green]
+planes_type_NN[style=filled, color=green]
+planes -- planes_lengthoverall[color=green]
+planes_lengthoverall[style=filled, color=green]
+planes -- planes_span[color=green]
+planes_span[style=filled, color=green]
+planes -- freightplanes_id8[color=blue];freightplanes_id8[style=filled, color=blue]
+planes -- passengerplanes_id8[color=blue];passengerplanes_id8[style=filled, color=blue]
+planes -- planefleet_plane8[color=blue];planefleet_plane8[style=filled, color=blue]
+tickets [shape=box, style=filled, color=turquoise];
+tickets -- tickets_id_PK_NN [color=yellow]
+tickets_id_PK_NN[style=filled, color=yellow]
+tickets -- tickets_passenger_NN[color=green]
+tickets_passenger_NN[style=filled, color=green]
+tickets -- tickets_issued_NN[color=green]
+tickets_issued_NN[style=filled, color=green]
+tickets -- tickets_rownr[color=green]
+tickets_rownr[style=filled, color=green]
+tickets -- tickets_seatposition[color=green]
+tickets_seatposition[style=filled, color=green]
+airlinesANDplanefleet [shape=diamond, style=filled, color=red];
+airlines -- airlinesANDplanefleet -- planefleet[color=red]
+airportsANDflights [shape=diamond, style=filled, color=red];
+airports -- airportsANDflights -- flights[color=red]
+countriesANDairlines [shape=diamond, style=filled, color=red];
+countries -- countriesANDairlines -- airlines[color=red]
+countriesANDairports [shape=diamond, style=filled, color=red];
+countries -- countriesANDairports -- airports[color=red]
+flightsANDpassengers [shape=diamond, style=filled, color=red];
+flights -- flightsANDpassengers -- passengers[color=red]
+passengersANDtickets [shape=diamond, style=filled, color=red];
+passengers -- passengersANDtickets -- tickets[color=red]
+planefleetANDflights [shape=diamond, style=filled, color=red];
+planefleet -- planefleetANDflights -- flights[color=red]
+planesANDfreightplanes [shape=diamond, style=filled, color=red];
+planes -- planesANDfreightplanes -- freightplanes[color=red]
+planesANDpassengerplanes [shape=diamond, style=filled, color=red];
+planes -- planesANDpassengerplanes -- passengerplanes[color=red]
+planesANDplanefleet [shape=diamond, style=filled, color=red];
+planes -- planesANDplanefleet -- planefleet[color=red]
+    Legend [shape=none, margin=0, label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+     <TR>
+      <TD COLSPAN="2"><B>Legend</B></TD>
+     </TR>
+     <TR>
+      <TD>Tablename</TD>
+      <TD BGCOLOR="turquoise"></TD>
+     </TR>
+     <TR>
+      <TD>Attribut</TD>
+      <TD BGCOLOR="GREEN"></TD>
+     </TR>
+     <TR>
+      <TD>PrimaryKey</TD>
+      <TD BGCOLOR="YELLOW"></TD>
+     </TR>
+     <TR>
+      <TD>ForeignKey</TD>
+      <TD BGCOLOR="BLUE"></TD>
+     </TR>
+     <TR>
+      <TD>Knotenpunkte</TD>
+      <TD BGCOLOR="RED"></TD>
+     </TR>
+    </TABLE>
+   >];
+
+}

@@ -1,0 +1,14 @@
+Hinweise zum RM
+Primary Keys werden mit _PK gekennzeichnet
+NotNull wird mit _NN gekennzeichnet
+
+airlines(id_PK_NN, name_NN, planefleet_airline)
+airports(airportcode_PK_NN, name, country_NN, flights_departure_airport, flights_destination_airport)
+countries(code_PK_NN, airlines_country, airports_country)
+flights(airline_PK_NN, flightnr_PK_NN, departure_time_NN, departure_airport, destination_time_NN, destination_airport, passengers_airline, passengers_flightnr)
+freightplanes(id_PK_NN)
+passengerplanes(id_PK_NN, maxseats)
+passengers(id_PK_NN, firstname, lastname, airline, tickets_passenger)
+planefleet(airline_PK_NN, plane_PK_NN, nr_PK_NN, bought, flights_airline, flights_planetype)
+planes(id_PK_NN, manufacturer_NN, type_NN, lengthoverall, span, freightplanes_id, passengerplanes_id, planefleet_plane)
+tickets(id_PK_NN, passenger_NN, issued_NN, rownr, seatposition)
