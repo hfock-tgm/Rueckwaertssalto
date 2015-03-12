@@ -106,7 +106,7 @@ public class ToERD {
                                 0,
                                 storagedObjects.get(i).getForeignKeys().get(j)
                                         .indexOf("_")))) {
-                    out.println(help + "AND" + storagedObjects.get(i).getForeignKeys().get(j).substring(0,storagedObjects.get(i).getForeignKeys().get(j).indexOf("_")) + "[shape=diamond]");
+                    out.println(help + "AND" + storagedObjects.get(i).getForeignKeys().get(j).substring(0,storagedObjects.get(i).getForeignKeys().get(j).indexOf("_")) + "[shape=diamond]2");
                     out.println(help
                             + " -- "
                             + help + "AND" + storagedObjects.get(i).getForeignKeys().get(j).substring(0,storagedObjects.get(i).getForeignKeys().get(j).indexOf("_"))
