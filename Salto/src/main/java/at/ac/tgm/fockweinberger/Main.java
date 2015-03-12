@@ -34,10 +34,14 @@ public class Main {
 		rm.doRMFile();
 		rm.stopPrintWriter();
 		ToERD erd = new ToERD(hoover);
-        erd.startPrintWriter();
+        erd.startPrintWriter("ERD");
+        erd.doDOTFileColorless();
+        erd.stopPrintWriter();
+        erd.toSVG("ERD");
+        erd.startPrintWriter("ColorERD");
         erd.doDOTFileExtended();
         erd.stopPrintWriter();
-        erd.toSVG();
-		db.disconnect();
+        erd.toSVG("ColorERD");
+        db.disconnect();
 	}
 }

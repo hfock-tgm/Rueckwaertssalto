@@ -31,13 +31,14 @@ public class ToERD {
 	}
 
 	/**
+     * @param fileName Wie die DOT-Datei heissen soll
 	 * oeffnet den PrintWriter
 	 */
-	public void startPrintWriter() {
+	public void startPrintWriter(String fileName) {
 		try {
 			System.out.println("Starts the PrintWriter");
 
-			out = new PrintWriter(new FileWriter("ERD.dot"));
+			out = new PrintWriter(new FileWriter(fileName + ".dot"));
 
 		} catch (IndexOutOfBoundsException e) {
 			System.err.println("Caught IndexOutOfBoundsException: "
@@ -64,7 +65,7 @@ public class ToERD {
 	/**
 	 * Diese Methode erstellt mithilfe der MetadatenObject Objekten das Dotfile
 	 */
-	public void doDOTFile() {
+	public void doDOTFileColorless() {
 		out.println("graph ERD {");
 		for (int i = 0; i < storagedObjects.size(); i++) {
 			// Hier werden alle Tabellen aufgelistet mit einer [shape=box]
@@ -97,34 +98,37 @@ public class ToERD {
 				// storagedObjects.get(i).getForeignKeys().get(j).substring(0,
 				// storagedObjects.get(i).getForeignKeys().get(j).indexOf("_")))
 				// {
-				if (!help2.equals(storagedObjects
-						.get(i)
-						.getForeignKeys()
-						.get(j)
-						.substring(
-								0,
-								storagedObjects.get(i).getForeignKeys().get(j)
-										.indexOf("_")))) {
-					out.println(help
-							+ " -- "
-							+ storagedObjects
-									.get(i)
-									.getForeignKeys()
-									.get(j)
-									.substring(
-											0,
-											storagedObjects.get(i)
-													.getForeignKeys().get(j)
-													.indexOf("_")));
-					help2 = storagedObjects
-							.get(i)
-							.getForeignKeys()
-							.get(j)
-							.substring(
-									0,
-									storagedObjects.get(i).getForeignKeys()
-											.get(j).indexOf("_"));
-				}
+                if (!help2.equals(storagedObjects
+                        .get(i)
+                        .getForeignKeys()
+                        .get(j)
+                        .substring(
+                                0,
+                                storagedObjects.get(i).getForeignKeys().get(j)
+                                        .indexOf("_")))) {
+                    out.println(help + "AND" + storagedObjects.get(i).getForeignKeys().get(j).substring(0,storagedObjects.get(i).getForeignKeys().get(j).indexOf("_")) + "[shape=diamond]");
+                    out.println(help
+                            + " -- "
+                            + help + "AND" + storagedObjects.get(i).getForeignKeys().get(j).substring(0,storagedObjects.get(i).getForeignKeys().get(j).indexOf("_"))
+                            + " -- "
+                            + storagedObjects
+                            .get(i)
+                            .getForeignKeys()
+                            .get(j)
+                            .substring(
+                                    0,
+                                    storagedObjects.get(i)
+                                            .getForeignKeys().get(j)
+                                            .indexOf("_")));
+                    help2 = storagedObjects
+                            .get(i)
+                            .getForeignKeys()
+                            .get(j)
+                            .substring(
+                                    0,
+                                    storagedObjects.get(i).getForeignKeys()
+                                            .get(j).indexOf("_"));
+                }
 			}
 		}
 		out.println("}");
@@ -245,15 +249,16 @@ public class ToERD {
 	}
 
 	/**
+     * @param fileName Wie die DOT-Datei heisst
 	 * Macht aus dem DOT-File eine SVGrafik
 	 */
-	public void toSVG() {
+	public void toSVG(String fileName) {
 		Runtime rt = Runtime.getRuntime();
 		try {
 			// Process pr = rt.exec("" + DOT_EXE_LOCATION
 			// + " -Tsvg EER.dot -o EER.svg");
-			rt.exec("dot -Tsvg ERD.dot -o ERD.svg");
-			System.out.println("dot -Tsvg ERD.dot -o ERD.svg");
+			rt.exec("dot -Tsvg " + fileName + ".dot -o " + fileName + ".svg");
+            System.out.println("dot -Tsvg " + fileName + ".dot -o " + fileName + ".svg");
             System.out.println("SVG wurde erstellt!");
 		} catch (IOException e) {
 			System.err.println("Es lief etwas schief!");
